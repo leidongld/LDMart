@@ -1,0 +1,17 @@
+<tabs>
+    <tab
+        id="@+id/tab_products"
+        icon="@drawable/tab_products"
+        title="商品"
+        barColorWhenSelected="#FF5722"/>
+    <tab
+        id="@+id/tab_orders"
+        icon="@drawable/tab_orders"
+        title="订单"
+        barColorWhenSelected="#03A9F4"/>
+    <tab
+        id="@+id/tab_my"
+        icon="@drawable/tab_my"
+        title="我的"
+        barColorWhenSelected="#4CAF50"/>
+</tabs>

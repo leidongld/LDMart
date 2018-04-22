@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">LDMart</string>
+
+    <string name="add_buyer">添加买家</string>
+    <string name="add_seller">添加卖家</string>
+
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+
+    <string name="order_bought_str_buyer">已购买</string>
+    <string name="order_deliver_str_buyer">已发货</string>
+
+    <string name="order_deliver_str_seller">待发货</string>
+    <string name="order_delivered_str_seller">已发货</string>
+
+    <string name="warning">警告</string>
+    <string name="warning_buy">确认购买</string>
+    <string name="warning_format_error">输入的信息不完整或格式错误，请仔细检查！</string>
+    <string name="warning_delete_user">是否要删除该用户？</string>
+    <string name="warning_authenticate_failed">您输入的用户名或密码错误，请仔细检查！</string>
+</resources>

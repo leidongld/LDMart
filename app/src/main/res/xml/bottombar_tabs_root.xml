@@ -1,0 +1,17 @@
+<tabs>
+    <tab
+        id="@+id/tab_buyer"
+        icon="@drawable/tab_buyer"
+        title="买家"
+        barColorWhenSelected="#FF5722"/>
+    <tab
+        id="@+id/tab_seller"
+        icon="@drawable/tab_seller"
+        title="商家"
+        barColorWhenSelected="#03A9F4"/>
+    <tab
+        id="@+id/tab_add_user"
+        icon="@drawable/tab_add_user"
+        title="添加"
+        barColorWhenSelected="#4CAF50"/>
+</tabs>

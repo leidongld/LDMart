@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/seller_item_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+    android:background="@drawable/bg_seller_item"
+    android:layout_margin="4dp">
+    <TextView
+        android:id="@+id/seller_id"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="买家Id"
+        android:textSize="16sp"
+        android:textColor="@color/red"
+        android:paddingLeft="12dp"/>
+    <TextView
+        android:id="@+id/seller_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="买家用户名"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:paddingLeft="12dp"/>
+</LinearLayout>
