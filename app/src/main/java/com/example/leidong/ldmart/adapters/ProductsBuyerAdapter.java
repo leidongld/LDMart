@@ -1,5 +1,6 @@
 package com.example.leidong.ldmart.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +20,19 @@ import com.squareup.picasso.Picasso;
 
 /**
  * 买家产品列表适配器
+ * @author Lei Dong
  */
 public class ProductsBuyerAdapter extends RecyclerView.Adapter<ProductsBuyerAdapter.ViewHolder> {
+    //Context
     private Context mContext;
+    //商品数组
     private Product[] mProducts;
 
+    /**
+     * 构造器
+     * @param context Context
+     * @param products 商品数组
+     */
     public ProductsBuyerAdapter(Context context, Product[] products) {
         this.mContext = context;
         this.mProducts = products;
@@ -34,8 +43,9 @@ public class ProductsBuyerAdapter extends RecyclerView.Adapter<ProductsBuyerAdap
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.product_buyer_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(ProductsBuyerAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(ProductsBuyerAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         if(mProducts != null) {
             Picasso.get().load(mProducts[position].getProductImageUrl()).into(holder.productImage);
             holder.productName.setText(mProducts[position].getProductName());
@@ -44,7 +54,6 @@ public class ProductsBuyerAdapter extends RecyclerView.Adapter<ProductsBuyerAdap
             holder.productItemLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(mContext, "" + position, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(mContext, ProductDetailActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putLong(Constants.PRODUCT_ID, mProducts[position].getId());

@@ -6,8 +6,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,7 @@ import com.example.leidong.ldmart.beans.Product;
 import com.example.leidong.ldmart.constants.Constants;
 import com.example.leidong.ldmart.greendao.OrderDao;
 import com.example.leidong.ldmart.greendao.ProductDao;
+import com.example.leidong.ldmart.secure.SecureUtils;
 import com.example.leidong.ldmart.storage.MySharedPreferences;
 import com.example.leidong.ldmart.utils.TimeUtils;
 import com.squareup.picasso.Picasso;
@@ -28,6 +32,7 @@ import butterknife.ButterKnife;
 
 /**
  * 商品详情界面
+ * @author Lei Dong
  */
 public class ProductDetailActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "ProductDetailActivity";
@@ -85,6 +90,7 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
     /**
      * 初始化组件
      */
+    @SuppressLint("SetTextI18n")
     private void initWidgets() {
         mMySharedPreferences = MySharedPreferences.getMySharedPreferences(this);
 
@@ -106,7 +112,7 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
 
     /**
      * 按键点击时间监听
-     * @param view
+     * @param view 点击的View
      */
     @Override
     public void onClick(View view) {
@@ -127,7 +133,6 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
      */
     @SuppressLint("ShowToast")
     private void clickBuyBtn() {
-        //Toast.makeText(ProductDetailActivity.this, "点击购买按钮", Toast.LENGTH_LONG).show();
         productDao = MyApplication.getInstance().getDaoSession().getProductDao();
         product = productDao.queryBuilder().where(ProductDao.Properties.Id.eq(mProductId)).unique();
 
@@ -136,13 +141,27 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
 
         //存量足够
         if(stock > 0){
+            final EditText editText = new EditText(this);
+            editText.setHint(R.string.input_password);
+            editText.setInputType(InputType.TYPE_MASK_CLASS);
+            editText.setGravity(Gravity.CENTER);
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.warning);
+            builder.setIcon(R.drawable.app_icon);
             builder.setMessage(R.string.warning_buy);
+            builder.setView(editText);
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    addOrderToDb();
+                    String passwordTemp = editText.getText().toString().trim();
+                    Long buyerId = mMySharedPreferences.load(Constants.BUYER_ID, 0L);
+                    if(SecureUtils.isBuyerPasswordRight(passwordTemp, buyerId)) {
+                        addOrderToDb();
+                    }
+                    else{
+                        Toast.makeText(ProductDetailActivity.this, R.string.warning_password_error, Toast.LENGTH_LONG).show();
+                    }
                 }
             });
             builder.setNegativeButton(R.string.cancel, null);
@@ -150,7 +169,7 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
         }
         //存量不足
         else{
-            Toast.makeText(ProductDetailActivity.this, "该商品库存不足，无法购买！", Toast.LENGTH_LONG).cancel();
+            Toast.makeText(ProductDetailActivity.this, R.string.stock_not_enough, Toast.LENGTH_LONG).cancel();
         }
     }
 
@@ -168,13 +187,10 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
         Long buyerId = mMySharedPreferences.load(Constants.BUYER_ID, 0L);
         if(buyerId != 0L) {
             order.setBuyerId(buyerId);
+            order.setProductId(mProductId);
             order.setOrderId(TimeUtils.generateOrderId());
             order.setOrderTime(TimeUtils.getCurrentSysTime());
-            order.setProductImageUrl(product.getProductImageUrl());
-            order.setProductName(product.getProductName());
             order.setProductNumber(1);
-            order.setProductPrice(product.getProductPrice());
-            order.setProductRemain(stock);
             order.setOrderState(Constants.ORDER_BOUGHT);
             orderDao.insert(order);
         }
@@ -184,6 +200,6 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
      * 点击加入购物车按钮
      */
     private void clickCollectBtn() {
-        Toast.makeText(ProductDetailActivity.this, "暂时未实现购物车功能", Toast.LENGTH_LONG).show();
+        Toast.makeText(ProductDetailActivity.this, R.string.add_trolley_finish, Toast.LENGTH_LONG).show();
     }
 }

@@ -6,7 +6,9 @@ import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * 商品Bean
+ * @author Lei Dong
  */
+
 @Entity
 public class Product {
     @Id(autoincrement = true)

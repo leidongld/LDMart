@@ -10,14 +10,14 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:layout_margin="8dp"
-        android:weightSum="5">
+        android:weightSum="4">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="用户名："
             android:textSize="18sp"
             android:gravity="center_vertical"
-            android:layout_weight="4"/>
+            android:layout_weight="3"/>
         <TextView
             android:id="@+id/tv_username"
             android:layout_width="match_parent"

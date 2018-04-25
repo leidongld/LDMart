@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 
 /**
  * 应用欢迎界面
+ * @author Lei Dong
  */
 public class SplashActivity extends Activity {
     private static final String TAG = "SplashActivity";

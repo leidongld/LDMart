@@ -1,5 +1,6 @@
 package com.example.leidong.ldmart.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +18,19 @@ import com.example.leidong.ldmart.ui.UserActivity;
 
 /**
  * 卖家列表适配器
+ * @author Lei Dong
  */
 public class SellerListAdapter extends RecyclerView.Adapter<SellerListAdapter.ViewHolder>{
+    //Context
     private Context mContext;
+    //卖家数组
     private Seller[] mSellers;
 
+    /**
+     * 构造器
+     * @param context Context
+     * @param mSellers 卖家数组
+     */
     public SellerListAdapter(Context context, Seller[] mSellers) {
         this.mContext = context;
         this.mSellers = mSellers;
@@ -32,8 +41,9 @@ public class SellerListAdapter extends RecyclerView.Adapter<SellerListAdapter.Vi
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.seller_list_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(SellerListAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(SellerListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         if(mSellers != null){
             holder.sellerId.setText(mSellers[position].getId() + "");
             holder.sellerName.setText(mSellers[position].getUsername());
@@ -43,17 +53,11 @@ public class SellerListAdapter extends RecyclerView.Adapter<SellerListAdapter.Vi
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, UserActivity.class);
                     Bundle bundle = new Bundle();
+                    //传递用户Id和用户身份码
                     bundle.putLong(Constants.USER_ID, mSellers[position].getId());
                     bundle.putInt(Constants.USER_MODE, Constants.SELLER_MODE);
                     intent.putExtra(Constants.USER_DATA, bundle);
                     mContext.startActivity(intent);
-                }
-            });
-
-            holder.sellerItemLayout.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    return false;
                 }
             });
         }

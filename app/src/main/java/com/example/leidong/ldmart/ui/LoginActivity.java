@@ -20,7 +20,6 @@ import com.example.leidong.ldmart.beans.Buyer;
 import com.example.leidong.ldmart.beans.Seller;
 import com.example.leidong.ldmart.constants.Constants;
 import com.example.leidong.ldmart.greendao.BuyerDao;
-import com.example.leidong.ldmart.greendao.RootDao;
 import com.example.leidong.ldmart.greendao.SellerDao;
 import com.example.leidong.ldmart.storage.MySharedPreferences;
 import com.example.leidong.ldmart.utils.AuthenticateUtils;
@@ -34,36 +33,53 @@ import butterknife.ButterKnife;
 public class LoginActivity extends Activity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private static final String TAG = "LoginActivity";
 
+    //界面整体Layout
     @BindView(R.id.ll_login_activity)
     LinearLayout mLoginLayout;
 
+    //用户名输入框
     @BindView(R.id.et_username)
     EditText mUsernameEt;
 
+    //密码输入框
     @BindView(R.id.et_password)
     EditText mPasswordEt;
 
+    //用户身份选择的RadioGroup
     @BindView(R.id.rg_selector)
     RadioGroup mRadioSelector;
 
+    //RadioButton 买家
     @BindView(R.id.rbtn_buyer)
     RadioButton mBuyerRbtn;
 
+    //RadioButton 卖家
     @BindView(R.id.rbtn_seller)
     RadioButton mSellerRbtn;
 
+    //RadioButton 管理员
     @BindView(R.id.rbtn_root)
     RadioButton mRootRbtn;
 
+    //登录按钮
     @BindView(R.id.btn_login)
     Button mLoginBtn;
 
+    /**
+     * 用户身份码
+     * buyer  1
+     * seller 2
+     * root   3
+     */
     private int modeNumber = 0;
 
+    //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
-    private RootDao mRootDao;
+    //BuyerDao
     private BuyerDao mBuyerDao;
+
+    //SellerDao
     private SellerDao mSellerDao;
 
     @Override
@@ -76,8 +92,10 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
 
         ButterKnife.bind(this);
 
+        //初始化组件
         initWidgets();
 
+        //初始化动作
         initActions();
     }
 
@@ -101,13 +119,12 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
 
         mBuyerDao = MyApplication.getInstance().getDaoSession().getBuyerDao();
         mSellerDao = MyApplication.getInstance().getDaoSession().getSellerDao();
-        mRootDao = MyApplication.getInstance().getDaoSession().getRootDao();
     }
 
     /**
      * RadioGroup的点选择操作
-     * @param radioGroup
-     * @param i
+     * @param radioGroup RadioGroup
+     * @param i 编号
      */
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -116,6 +133,7 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
         String usernameTemp = mUsernameEt.getText().toString().trim();
         String passwordTemp = mPasswordEt.getText().toString().trim();
 
+        //选择买家模式
         if(i == R.id.rbtn_buyer){
             mLoginLayout.setBackgroundResource(R.drawable.bg_buyer);
             modeNumber = Constants.BUYER_MODE;
@@ -123,6 +141,7 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
                 mLoginBtn.setVisibility(View.VISIBLE);
             }
         }
+        //选择卖家模式
         else if(i == R.id.rbtn_seller){
             mLoginLayout.setBackgroundResource(R.drawable.bg_seller);
             modeNumber = Constants.SELLER_MODE;
@@ -130,6 +149,7 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
                 mLoginBtn.setVisibility(View.VISIBLE);
             }
         }
+        //选择管理员模式
         else if(i == R.id.rbtn_root){
             mLoginLayout.setBackgroundResource(R.drawable.bg_root);
             modeNumber = Constants.ROOT_MODE;
@@ -144,13 +164,15 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
 
     /**
      * 组件点击操作
-     * @param view
+     * @param view 点击的View
      */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login:
                 clickLoginBtn();
+                break;
+            default:
                 break;
         }
     }
@@ -162,20 +184,15 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
         String usernameTemp = mUsernameEt.getText().toString().trim();
         String passwordTemp = mPasswordEt.getText().toString().trim();
 
+        //买家模式
         if(modeNumber == Constants.BUYER_MODE){
             if(AuthenticateUtils.authenticateBuyer(usernameTemp, passwordTemp)) {
                 Buyer buyer = mBuyerDao.queryBuilder().where(BuyerDao.Properties.Username.eq(usernameTemp)).unique();
                 Long buyerId = buyer.getId();
-                String buyerAddress = buyer.getAddress();
-                String buyerPhone = buyer.getPhone();
 
                 Bundle bundle = new Bundle();
-                bundle.putInt(Constants.USER_MODE, Constants.BUYER_MODE);//代表买家
+                bundle.putInt(Constants.USER_MODE, Constants.BUYER_MODE);
                 bundle.putLong(Constants.BUYER_ID, buyerId);
-//                bundle.putString(Constants.BUYER_USERNAME, usernameTemp);
-//                bundle.putString(Constants.BUYER_PASSWORD, passwordTemp);
-//                bundle.putString(Constants.BUYER_ADDRESS, buyerAddress);
-//                bundle.putString(Constants.BUYER_PHONE, buyerPhone);
 
                 Intent intent = new Intent(LoginActivity.this, MainBuyerActivity.class);
                 intent.putExtra(Constants.BUYER_DATA, bundle);
@@ -187,31 +204,28 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
                 showAlertDialog();
             }
         }
+        //卖家模式
         else if(modeNumber == Constants.SELLER_MODE){
+            //认证成功
             if(AuthenticateUtils.authenticateSeller(usernameTemp, passwordTemp)) {
                 Seller seller = mSellerDao.queryBuilder().where(SellerDao.Properties.Username.eq(usernameTemp)).unique();
                 Long sellerId = seller.getId();
-                String sellerAddress = seller.getAddress();
-                String sellerPhone = seller.getPhone();
 
                 Bundle bundle = new Bundle();
-                bundle.putInt(Constants.USER_MODE, Constants.SELLER_MODE);//代表商家
+                bundle.putInt(Constants.USER_MODE, Constants.SELLER_MODE);
                 bundle.putLong(Constants.SELLER_ID, sellerId);
-//                bundle.putString(Constants.SELLER_USERNAME, usernameTemp);
-//                bundle.putString(Constants.SELLER_PASSWORD, passwordTemp);
-//                bundle.putString(Constants.SELLER_ADDRESS, sellerAddress);
-//                bundle.putString(Constants.SELLER_PHONE, sellerPhone);
 
                 Intent intent = new Intent(LoginActivity.this, MainSellerActivity.class);
                 intent.putExtra(Constants.SELLER_DATA, bundle);
                 startActivity(intent);
                 finish();
             }
+            //认证失败
             else{
-                //提醒用户用户名或者密码输入不正确
                 showAlertDialog();
             }
         }
+        //管理员模式
         else if(modeNumber == Constants.ROOT_MODE){
             if(AuthenticateUtils.authenticateRoot(usernameTemp, passwordTemp)) {
                 Intent intent = new Intent(LoginActivity.this, MainRootActivity.class);
@@ -231,6 +245,7 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.warning);
+        builder.setIcon(R.drawable.app_icon);
         builder.setMessage(R.string.warning_authenticate_failed);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override

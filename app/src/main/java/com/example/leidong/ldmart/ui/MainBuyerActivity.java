@@ -22,24 +22,34 @@ import butterknife.ButterKnife;
 
 /**
  * 买家主界面
+ * @author Lei Dong
  */
 public class MainBuyerActivity extends Activity implements OnTabSelectListener {
     private static final String TAG = "MainBuyerActivity";
 
+    //界面的layout
     @BindView(R.id.content_container)
     FrameLayout mContentContainer;
 
+    //底部导航栏
     @BindView(R.id.bottom_bar)
     BottomBar mBottomBar;
 
+    //FragmentManager
     private FragmentManager mFragmentManager;
 
+    //用户模式码
     private int mUserMode;
+    //买家Id
     private Long mBuyerId;
 
+    //Bundle
     private Bundle mBundle;
+
+    //Intent
     private Intent mIntent;
 
+    //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
     @Override
@@ -52,8 +62,10 @@ public class MainBuyerActivity extends Activity implements OnTabSelectListener {
 
         ButterKnife.bind(this);
 
+        //初始化组件
         initWidgets();
 
+        //初始化动作
         initActions();
     }
 
@@ -77,35 +89,35 @@ public class MainBuyerActivity extends Activity implements OnTabSelectListener {
         mMySharedPreferences.save(Constants.USER_MODE, mUserMode);
         mMySharedPreferences.save(Constants.BUYER_ID, mBuyerId);
 
+        //加载Fragment
         mFragmentManager = getFragmentManager();
         ProductsBuyerFragment productsBuyerFragment = new ProductsBuyerFragment();
-//        productsBuyerFragment.setArguments(mBundle);
         mFragmentManager.beginTransaction().replace(R.id.content_container, productsBuyerFragment).commit();
     }
 
     /**
      * 底部导航栏的点击
-     * @param tabId
+     * @param tabId tab编号
      */
     @Override
     public void onTabSelected(int tabId) {
         switch (tabId){
+            //商品tab
             case R.id.tab_products:
                 mFragmentManager = getFragmentManager();
                 ProductsBuyerFragment productsBuyerFragment = new ProductsBuyerFragment();
-//                productsBuyerFragment.setArguments(mBundle);
                 mFragmentManager.beginTransaction().replace(R.id.content_container, productsBuyerFragment).commit();
                 break;
+            //订单tab
             case R.id.tab_orders:
                 mFragmentManager = getFragmentManager();
                 OrdersBuyerFragment ordersBuyerFragment = new OrdersBuyerFragment();
-//                ordersBuyerFragment.setArguments(mBundle);
                 mFragmentManager.beginTransaction().replace(R.id.content_container, ordersBuyerFragment).commit();
                 break;
+            //我的tab
             case R.id.tab_my:
                 mFragmentManager = getFragmentManager();
                 MyBuyerFragment myBuyerFragment = new MyBuyerFragment();
-//                myBuyerFragment.setArguments(mBundle);
                 mFragmentManager.beginTransaction().replace(R.id.content_container, myBuyerFragment).commit();
                 break;
             default:

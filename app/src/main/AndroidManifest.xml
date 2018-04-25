@@ -47,6 +47,10 @@
         <!--用户基本信息界面-->
         <activity android:name=".ui.UserActivity">
         </activity>
+
+        <!--订单详情界面-->
+        <activity android:name=".ui.OrderDetailActivity">
+        </activity>
     </application>
 
 </manifest>

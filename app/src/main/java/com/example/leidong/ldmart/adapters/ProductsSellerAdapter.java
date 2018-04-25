@@ -1,5 +1,6 @@
 package com.example.leidong.ldmart.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +20,19 @@ import com.squareup.picasso.Picasso;
 
 /**
  * 卖家产品列表适配器
+ * @author Lei Dong
  */
 public class ProductsSellerAdapter extends RecyclerView.Adapter<ProductsSellerAdapter.ViewHolder> {
+    //Context
     private Context mContext;
+    //商品数组
     private Product[] mProducts;
 
+    /**
+     * 构造器
+     * @param context Context
+     * @param products 商品数组
+     */
     public ProductsSellerAdapter(Context context, Product[] products) {
         this.mContext = context;
         this.mProducts = products;
@@ -34,8 +43,9 @@ public class ProductsSellerAdapter extends RecyclerView.Adapter<ProductsSellerAd
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.product_seller_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         if(mProducts != null) {
             Picasso.get().load(mProducts[position].getProductImageUrl()).into(holder.productImage);
             holder.productName.setText(mProducts[position].getProductName());
@@ -44,14 +54,9 @@ public class ProductsSellerAdapter extends RecyclerView.Adapter<ProductsSellerAd
             holder.productItemLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(mContext, position + "", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(mContext, ProductManageActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putLong(Constants.PRODUCT_ID, mProducts[position].getId());
-                    bundle.putString(Constants.PRODUCT_MANAGE_NAME, mProducts[position].getProductName());
-                    bundle.putString(Constants.PRODUCT_MANAGE_IMAGE_URL, mProducts[position].getProductImageUrl());
-                    bundle.putInt(Constants.PRODUCT_MANAGE_PRICE, mProducts[position].getProductPrice());
-                    bundle.putString(Constants.PRODUCT_MANAGE_DESC, mProducts[position].getDesc());
                     intent.putExtra(Constants.PRODUCT_MANAGE, bundle);
                     mContext.startActivity(intent);
                 }

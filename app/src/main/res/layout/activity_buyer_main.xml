@@ -15,7 +15,7 @@
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottombar_tabs_buyer"
         app:bb_activeTabColor="@color/white"

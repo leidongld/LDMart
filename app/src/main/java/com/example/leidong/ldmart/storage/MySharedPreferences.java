@@ -1,5 +1,6 @@
 package com.example.leidong.ldmart.storage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -7,10 +8,12 @@ import java.util.Map;
 
 /**
  * 自定义MySharedPreferences用于存数各项配置信息
+ * @author Lei Dong
  */
 public class MySharedPreferences {
     private Context context;
     private SharedPreferences sharedPreferences;
+    @SuppressLint("StaticFieldLeak")
     private static MySharedPreferences mySharedPreferences;
 
     public MySharedPreferences(Context context){

@@ -6,7 +6,9 @@ import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * 买家Bean
+ * @author Lei Dong
  */
+
 @Entity
 public class Buyer {
     @Id(autoincrement = true)

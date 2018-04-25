@@ -26,40 +26,54 @@ import butterknife.ButterKnife;
 
 /**
  * 买家个人信息Fragment
+ * @author Lei Dong
  */
 public class MyBuyerFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "MyBuyerFragment";
 
+    //买家用户名输入框
     @BindView(R.id.buyer_name)
     EditText mBuyerNameEt;
 
+    //买家密码输入框1的layout
     @BindView(R.id.password1_layout)
     LinearLayout mPassword1Layout;
 
+    //买家密码输入框1
     @BindView(R.id.buyer_password1)
     EditText mBuyerPassword1Et;
 
+    //买家密码输入框2的layout
     @BindView(R.id.password2_layout)
     LinearLayout mPassword2Layout;
 
+    //买家密码输入框2
     @BindView(R.id.buyer_password2)
     EditText mBuyerPassword2Et;
 
+    //买家电话输入框
     @BindView(R.id.buyer_phone)
     EditText mBuyerPhoneEt;
 
+    //买家地址输入框
     @BindView(R.id.buyer_address)
     EditText mBuyerAddressEt;
 
+    //更改信息按钮
     @BindView(R.id.btn_change)
     Button mBtnChange;
 
+    //保存信息按钮
     @BindView(R.id.btn_save)
     Button mBtnSave;
 
+    //用户身份码
     private int mUserMode;
+
+    //买家Id
     private Long mBuyerId;
 
+    //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
     private BuyerDao mBuyerDao;
@@ -75,8 +89,10 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
+        //初始化组件
         initWidgets();
 
+        //初始化动作
         initActions();
     }
 
@@ -92,15 +108,13 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
      * 初始化组件
      */
     private void initWidgets() {
-//        Bundle bundle = getArguments();
-//        mUserMode = bundle.getInt(Constants.USER_MODE);
-//        mBuyerId = bundle.getLong(Constants.BUYER_ID);
         mMySharedPreferences = MySharedPreferences.getMySharedPreferences(MyApplication.getsContext());
         mUserMode = mMySharedPreferences.load(Constants.USER_MODE, 0);
         mBuyerId = mMySharedPreferences.load(Constants.BUYER_ID, 0L);
 
         mBuyerDao = MyApplication.getInstance().getDaoSession().getBuyerDao();
 
+        //输入框不可输入
         mBuyerNameEt.setFocusableInTouchMode(false);
         mBuyerNameEt.setEnabled(false);
         mBuyerAddressEt.setFocusableInTouchMode(false);
@@ -108,6 +122,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
         mBuyerPhoneEt.setFocusableInTouchMode(false);
         mBuyerAddressEt.setEnabled(false);
 
+        //填充买家信息
         Buyer buyer = mBuyerDao.queryBuilder().where(BuyerDao.Properties.Id.eq(mBuyerId)).unique();
         if(buyer != null){
             String buyerName = buyer.getUsername();
@@ -123,7 +138,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
 
     /**
      * 按钮点击事件
-     * @param view
+     * @param view 点击的View
      */
     @Override
     public void onClick(View view) {
@@ -164,7 +179,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
             buyer.setAddress(buyerAddress);
             mBuyerDao.update(buyer);
 
-            Toast.makeText(MyApplication.getsContext(), "您的信息更改完毕！", Toast.LENGTH_LONG).cancel();
+            Toast.makeText(MyApplication.getsContext(), R.string.user_info_update_finish, Toast.LENGTH_LONG).cancel();
 
             mPassword1Layout.setVisibility(View.GONE);
             mPassword2Layout.setVisibility(View.GONE);
@@ -179,6 +194,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
         else{
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(R.string.warning);
+            builder.setIcon(R.drawable.app_icon);
             builder.setMessage(R.string.warning_format_error);
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
@@ -202,6 +218,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
     private void clickChangeBtn() {
         Toast.makeText(MyApplication.getsContext(), "请更改您的信息", Toast.LENGTH_LONG).cancel();
 
+        //可输入
         mBuyerNameEt.setFocusableInTouchMode(true);
         mBuyerNameEt.setEnabled(true);
         mBuyerAddressEt.setFocusableInTouchMode(true);
@@ -209,9 +226,11 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
         mBuyerPhoneEt.setFocusableInTouchMode(true);
         mBuyerPhoneEt.setEnabled(true);
 
+        //密码输入框可见
         mPassword1Layout.setVisibility(View.VISIBLE);
         mPassword2Layout.setVisibility(View.VISIBLE);
 
+        //清除输入框信息
         mBuyerNameEt.setText(null);
         mBuyerPhoneEt.setText(null);
         mBuyerAddressEt.setText(null);

@@ -1,5 +1,6 @@
 package com.example.leidong.ldmart.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.leidong.ldmart.MyApplication;
 import com.example.leidong.ldmart.R;
@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 
 /**
  * 商品管理界面
+ * @author Lei Dong
  */
 public class ProductManageActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "ProductManageActivity";
@@ -44,7 +45,7 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
     Button mBtnOk;
 
     /*特定商品的信息*/
-    private int mProductId;
+    private Long mProductId;
     private String mProductImageUrl;
     private String mProductName;
     private int mProductPrice;
@@ -73,15 +74,22 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
     /**
      * 初始化组件
      */
+    @SuppressLint("SetTextI18n")
     private void initWidgets() {
         //获取本界面需要的全部信息
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(Constants.PRODUCT_MANAGE);
-        mProductId = bundle.getInt(Constants.PRODUCT_ID);
-        mProductImageUrl = bundle.getString(Constants.PRODUCT_MANAGE_IMAGE_URL);
-        mProductName = bundle.getString(Constants.PRODUCT_MANAGE_NAME);
-        mProductPrice = bundle.getInt(Constants.PRODUCT_MANAGE_PRICE);
-        mProductDesc = bundle.getString(Constants.PRODUCT_MANAGE_DESC);
+        mProductId = bundle.getLong(Constants.PRODUCT_ID);
+//        mProductImageUrl = bundle.getString(Constants.PRODUCT_MANAGE_IMAGE_URL);
+//        mProductName = bundle.getString(Constants.PRODUCT_MANAGE_NAME);
+//        mProductPrice = bundle.getInt(Constants.PRODUCT_MANAGE_PRICE);
+//        mProductDesc = bundle.getString(Constants.PRODUCT_MANAGE_DESC);
+        ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
+        Product product = productDao.queryBuilder().where(ProductDao.Properties.Id.eq(mProductId)).unique();
+        mProductImageUrl = product.getProductImageUrl();
+        mProductName = product.getProductName();
+        mProductPrice = product.getProductPrice();
+        mProductDesc = product.getDesc();
 
         //填充本界面需要的全部信息
         Picasso.get().load(mProductImageUrl).into(mProductManageImage);
@@ -92,7 +100,7 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
 
     /**
      * 按钮点击事件的监听
-     * @param view
+     * @param view 点击的View
      */
     @Override
     public void onClick(View view) {
@@ -112,13 +120,12 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
      * 点击确认按钮
      */
     private void clickOkBtn() {
-        Toast.makeText(ProductManageActivity.this, "商品信息已更新", Toast.LENGTH_LONG).show();
         String productName = mProductManageName.getText().toString().trim();
         int productPrice = Integer.parseInt(mProductManagePrice.getText().toString().trim());
         String productDesc = mProductManageDesc.getText().toString().trim();
 
-        ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
-        Product product = productDao.queryBuilder().where(ProductDao.Properties.Id.eq(mProductId+1)).unique();
+        final ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
+        final Product product = productDao.queryBuilder().where(ProductDao.Properties.Id.eq(mProductId)).unique();
         product.setProductName(productName);
         product.setProductPrice(productPrice);
         product.setDesc(productDesc);

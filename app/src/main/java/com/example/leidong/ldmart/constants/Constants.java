@@ -2,6 +2,7 @@ package com.example.leidong.ldmart.constants;
 
 /**
  * 常量类
+ * @author Lei Dong
  */
 public class Constants {
     //欢迎页持续时间
@@ -65,15 +66,20 @@ public class Constants {
 
     public static final String USER_MODE = "USER_MODE";
 
+    //用户身份码
     public static final int BUYER_MODE = 1;
     public static final int SELLER_MODE = 2;
     public static final int ROOT_MODE = 3;
 
+    //订单状态码
     public static int ORDER_BOUGHT = 0;
-
     public static int ORDER_DELIVERED = 1;
 
     public static final String USER_DATA = "USER_DATA";
 
     public static final String USER_ID = "USER_ID";
+
+    public static final String ORDER_DB_ID = "ORDER_DB_ID";
+
+    public static final String ORDER_DATA = "ORDER_DATA";
 }

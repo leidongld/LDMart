@@ -1,5 +1,6 @@
 package com.example.leidong.ldmart.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +18,19 @@ import com.example.leidong.ldmart.ui.UserActivity;
 
 /**
  * 买家列表适配器
+ * @author Lei Dong
  */
 public class BuyerListAdapter extends RecyclerView.Adapter<BuyerListAdapter.ViewHolder> {
+    //Context
     private Context mContext;
+    //买家数组
     private Buyer[] mBuyers;
 
+    /**
+     * 构造器
+     * @param context Context
+     * @param mBuyers 买家数组
+     */
     public BuyerListAdapter(Context context, Buyer[] mBuyers) {
         this.mContext = context;
         this.mBuyers = mBuyers;
@@ -32,8 +41,9 @@ public class BuyerListAdapter extends RecyclerView.Adapter<BuyerListAdapter.View
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.buyer_list_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         if(mBuyers.length > 0) {
             holder.buyerId.setText(mBuyers[position].getId() + "");
             holder.buyerName.setText(mBuyers[position].getUsername());
@@ -42,6 +52,7 @@ public class BuyerListAdapter extends RecyclerView.Adapter<BuyerListAdapter.View
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, UserActivity.class);
+                    //传递用户Id和用户身份码
                     Bundle bundle = new Bundle();
                     bundle.putLong(Constants.USER_ID, mBuyers[position].getId());
                     bundle.putInt(Constants.USER_MODE, Constants.BUYER_MODE);

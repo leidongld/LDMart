@@ -2,6 +2,10 @@ package com.example.leidong.ldmart.models;
 
 import java.util.List;
 
+/**
+ * Product Json
+ * @author Lei Dong
+ */
 public class Products {
 
     private List<ProductsBean> products;

@@ -5,10 +5,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="12dp">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="100dp">
@@ -30,14 +30,14 @@
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:layout_margin="8dp"
-            android:weightSum="5">
+            android:weightSum="4">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="姓名："
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center_vertical"
-                android:layout_weight="4"/>
+                android:layout_weight="3"/>
             <EditText
                 android:id="@+id/seller_name"
                 android:layout_width="match_parent"
@@ -54,14 +54,14 @@
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:layout_margin="8dp"
-            android:weightSum="5">
+            android:weightSum="3">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="新密码："
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center_vertical"
-                android:layout_weight="4"/>
+                android:layout_weight="2"/>
             <EditText
                 android:id="@+id/seller_password1"
                 android:layout_width="match_parent"
@@ -79,14 +79,14 @@
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:layout_margin="8dp"
-            android:weightSum="5">
+            android:weightSum="3">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="确认密码："
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center_vertical"
-                android:layout_weight="4"/>
+                android:layout_weight="2"/>
             <EditText
                 android:id="@+id/seller_password2"
                 android:layout_width="match_parent"
@@ -102,14 +102,14 @@
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:layout_margin="8dp"
-            android:weightSum="5">
+            android:weightSum="4">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="电话："
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center_vertical"
-                android:layout_weight="4"/>
+                android:layout_weight="3"/>
             <EditText
                 android:id="@+id/seller_phone"
                 android:layout_width="match_parent"
@@ -124,14 +124,14 @@
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:layout_margin="8dp"
-            android:weightSum="5">
+            android:weightSum="4">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="地址："
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center_vertical"
-                android:layout_weight="4"/>
+                android:layout_weight="3"/>
             <EditText
                 android:id="@+id/seller_address"
                 android:layout_width="match_parent"

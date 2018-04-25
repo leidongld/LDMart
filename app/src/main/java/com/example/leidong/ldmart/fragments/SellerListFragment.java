@@ -21,11 +21,16 @@ import butterknife.ButterKnife;
 
 /**
  * 卖家列表Fragment
+ * @author Lei Dong
  */
 public class SellerListFragment extends Fragment{
+    private static final String TAG = "SellerListFragment";
+
+    //卖家列表
     @BindView(R.id.sellers_container)
     RecyclerView mSellersContainer;
 
+    //全部卖家
     private Seller[] mSellers;
 
     private SellerDao mSellerDao;
@@ -41,8 +46,10 @@ public class SellerListFragment extends Fragment{
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
+        //初始化组件
         initWidgets();
 
+        //初始化动作
         initActions();
     }
 
@@ -66,7 +73,6 @@ public class SellerListFragment extends Fragment{
         else{
             mSellers = new Seller[0];
         }
-
 
         mSellersContainer.setLayoutManager(new LinearLayoutManager(MyApplication.getsContext()));
         mSellersContainer.setAdapter(new SellerListAdapter(MyApplication.getsContext(), mSellers));
