@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.example.leidong.ldmart.MyApplication;
-import com.example.leidong.ldmart.beans.Buyer;
 import com.example.leidong.ldmart.beans.Order;
 import com.example.leidong.ldmart.beans.Product;
-import com.example.leidong.ldmart.beans.Seller;
 import com.example.leidong.ldmart.greendao.OrderDao;
 import com.example.leidong.ldmart.greendao.ProductDao;
 import com.example.leidong.ldmart.models.Products;
@@ -106,7 +104,7 @@ public class LoadUtils {
      */
     public static Order[] loadSellerOrders() {
         OrderDao orderDao = MyApplication.getInstance().getDaoSession().getOrderDao();
-        List<Order> orderList = orderDao.queryBuilder().list();
+        List<Order> orderList = orderDao.loadAll();
         if(orderList.size() == 0){
             return null;
         }
@@ -115,14 +113,6 @@ public class LoadUtils {
             orders[i] = orderList.get(i);
         }
         return orders;
-    }
-
-    public static Buyer[] loadBuyersData() {
-        return new Buyer[0];
-    }
-
-    public static Seller[] loadSellersData() {
-        return new Seller[0];
     }
 
     /**

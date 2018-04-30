@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
     <ScrollView
         android:id="@+id/product_manage_container"
         android:layout_width="match_parent"
@@ -20,44 +21,133 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="2dp"/>
-            <!--商品名称和价格-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"/>
+
+            <!--商品名称-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="4"
+                android:layout_marginRight="22dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="名称："
+                    android:textSize="18sp"
+                    android:gravity="center"/>
                 <EditText
                     android:id="@+id/product_manage_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="18sp"
+                    android:textColor="@color/green"
                     android:hint="请输入商品名称"
-                    android:layout_weight="1"/>
+                    android:lines="1"
+                    android:layout_weight="1"
+                    android:background="@null"/>
+            </LinearLayout>
+
+            <!--商品价格-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_marginRight="22dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="价格："
+                    android:textSize="18sp"
+                    android:gravity="center"/>
                 <EditText
                     android:id="@+id/product_manage_price"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:hint="请输入商品价格"
                     android:textSize="18sp"
-                    android:textColor="@color/red"/>
+                    android:textColor="@color/red"
+                    android:hint="请输入商品价格"
+                    android:lines="1"
+                    android:layout_weight="1"
+                    android:background="@null"/>
             </LinearLayout>
+
+            <!--库存-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_marginRight="22dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="库存："
+                    android:textSize="18sp"
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/product_manage_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:textColor="@color/orange"
+                    android:hint="请输入商品库存"
+                    android:lines="1"
+                    android:layout_weight="1"
+                    android:background="@null"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
             <!--商品介绍-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="商品介绍"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_margin="12dp"/>
             <EditText
                 android:id="@+id/product_manage_desc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="136dp"
-                android:textSize="16sp"
-                android:hint="再次输入商品详细介绍"
-                android:paddingLeft="12dp"/>
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:hint="请输入商品详情"
+                android:layout_weight="1"
+                android:padding="12dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@null"/>
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/product_manage_bottom"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:weightSum="2"

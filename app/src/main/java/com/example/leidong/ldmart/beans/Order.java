@@ -14,14 +14,10 @@ public class Order {
     @Id(autoincrement = true)
     private Long id;
     private Long buyerId;
-    private long productId;
+    private Long productId;
     private String orderId;
     private String orderTime;
-//    private String productName;
-//    private String productImageUrl;
-//    private int productPrice;
     private int productNumber;
-//    private int productRemain;
     private int orderState;
 
     @Generated(hash = 1497095576)
@@ -64,30 +60,6 @@ public class Order {
         this.orderTime = orderTime;
     }
 
-//    public String getProductName() {
-//        return productName;
-//    }
-//
-//    public void setProductName(String productName) {
-//        this.productName = productName;
-//    }
-//
-//    public String getProductImageUrl() {
-//        return productImageUrl;
-//    }
-//
-//    public void setProductImageUrl(String productImageUrl) {
-//        this.productImageUrl = productImageUrl;
-//    }
-//
-//    public int getProductPrice() {
-//        return productPrice;
-//    }
-//
-//    public void setProductPrice(int productPrice) {
-//        this.productPrice = productPrice;
-//    }
-
     public int getProductNumber() {
         return productNumber;
     }
@@ -95,14 +67,6 @@ public class Order {
     public void setProductNumber(int productNumber) {
         this.productNumber = productNumber;
     }
-
-//    public int getProductRemain() {
-//        return productRemain;
-//    }
-//
-//    public void setProductRemain(int productRemain) {
-//        this.productRemain = productRemain;
-//    }
 
     public Long getBuyerId() {
         return buyerId;

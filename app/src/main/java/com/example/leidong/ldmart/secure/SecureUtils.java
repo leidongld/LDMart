@@ -2,7 +2,9 @@ package com.example.leidong.ldmart.secure;
 
 import com.example.leidong.ldmart.MyApplication;
 import com.example.leidong.ldmart.beans.Buyer;
+import com.example.leidong.ldmart.beans.Seller;
 import com.example.leidong.ldmart.greendao.BuyerDao;
+import com.example.leidong.ldmart.greendao.SellerDao;
 
 /**
  * 安全相关类
@@ -51,6 +53,22 @@ public class SecureUtils {
         String password = null;
         if(buyer != null){
             password = buyer.getPassword();
+        }
+        return passwordTemp.equals(password);
+    }
+
+    /**
+     * 卖家密码是否匹配
+     * @param passwordTemp 输入的密码
+     * @param sellerId 卖家Id
+     * @return 密码匹配是否正确
+     */
+    public static boolean isSellererPasswordRight(String passwordTemp, Long sellerId) {
+        SellerDao sellerDao = MyApplication.getInstance().getDaoSession().getSellerDao();
+        Seller seller = sellerDao.queryBuilder().where(SellerDao.Properties.Id.eq(sellerId)).unique();
+        String password = null;
+        if(seller != null){
+            password = seller.getPassword();
         }
         return passwordTemp.equals(password);
     }

@@ -143,7 +143,7 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
         if(stock > 0){
             final EditText editText = new EditText(this);
             editText.setHint(R.string.input_password);
-            editText.setInputType(InputType.TYPE_MASK_CLASS);
+            editText.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
             editText.setGravity(Gravity.CENTER);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
