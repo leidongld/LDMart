@@ -87,7 +87,7 @@ public class SplashActivity extends Activity {
             root.setPassword(Constants.ROOT_PASSWORD);
             mRootDao.insert(root);
 
-            mMySharedPreferences.save(Constants.IS_ROOT_EXIST, false);
+            mMySharedPreferences.save(Constants.IS_ROOT_EXIST, true);
         }
     }
 

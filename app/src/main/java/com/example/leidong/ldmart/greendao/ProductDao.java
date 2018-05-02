@@ -25,11 +25,12 @@ public class ProductDao extends AbstractDao<Product, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property ProductName = new Property(1, String.class, "productName", false, "PRODUCT_NAME");
-        public final static Property ProductImageUrl = new Property(2, String.class, "productImageUrl", false, "PRODUCT_IMAGE_URL");
-        public final static Property ProductPrice = new Property(3, int.class, "productPrice", false, "PRODUCT_PRICE");
-        public final static Property ProductStock = new Property(4, int.class, "productStock", false, "PRODUCT_STOCK");
-        public final static Property Desc = new Property(5, String.class, "desc", false, "DESC");
+        public final static Property CategoryId = new Property(1, Long.class, "categoryId", false, "CATEGORY_ID");
+        public final static Property ProductName = new Property(2, String.class, "productName", false, "PRODUCT_NAME");
+        public final static Property ProductImageUrl = new Property(3, String.class, "productImageUrl", false, "PRODUCT_IMAGE_URL");
+        public final static Property ProductPrice = new Property(4, int.class, "productPrice", false, "PRODUCT_PRICE");
+        public final static Property ProductStock = new Property(5, int.class, "productStock", false, "PRODUCT_STOCK");
+        public final static Property Desc = new Property(6, String.class, "desc", false, "DESC");
     };
 
 
@@ -46,11 +47,12 @@ public class ProductDao extends AbstractDao<Product, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"PRODUCT\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"PRODUCT_NAME\" TEXT," + // 1: productName
-                "\"PRODUCT_IMAGE_URL\" TEXT," + // 2: productImageUrl
-                "\"PRODUCT_PRICE\" INTEGER NOT NULL ," + // 3: productPrice
-                "\"PRODUCT_STOCK\" INTEGER NOT NULL ," + // 4: productStock
-                "\"DESC\" TEXT);"); // 5: desc
+                "\"CATEGORY_ID\" INTEGER," + // 1: categoryId
+                "\"PRODUCT_NAME\" TEXT," + // 2: productName
+                "\"PRODUCT_IMAGE_URL\" TEXT," + // 3: productImageUrl
+                "\"PRODUCT_PRICE\" INTEGER NOT NULL ," + // 4: productPrice
+                "\"PRODUCT_STOCK\" INTEGER NOT NULL ," + // 5: productStock
+                "\"DESC\" TEXT);"); // 6: desc
     }
 
     /** Drops the underlying database table. */
@@ -68,21 +70,26 @@ public class ProductDao extends AbstractDao<Product, Long> {
             stmt.bindLong(1, id);
         }
  
+        Long categoryId = entity.getCategoryId();
+        if (categoryId != null) {
+            stmt.bindLong(2, categoryId);
+        }
+ 
         String productName = entity.getProductName();
         if (productName != null) {
-            stmt.bindString(2, productName);
+            stmt.bindString(3, productName);
         }
  
         String productImageUrl = entity.getProductImageUrl();
         if (productImageUrl != null) {
-            stmt.bindString(3, productImageUrl);
+            stmt.bindString(4, productImageUrl);
         }
-        stmt.bindLong(4, entity.getProductPrice());
-        stmt.bindLong(5, entity.getProductStock());
+        stmt.bindLong(5, entity.getProductPrice());
+        stmt.bindLong(6, entity.getProductStock());
  
         String desc = entity.getDesc();
         if (desc != null) {
-            stmt.bindString(6, desc);
+            stmt.bindString(7, desc);
         }
     }
 
@@ -95,21 +102,26 @@ public class ProductDao extends AbstractDao<Product, Long> {
             stmt.bindLong(1, id);
         }
  
+        Long categoryId = entity.getCategoryId();
+        if (categoryId != null) {
+            stmt.bindLong(2, categoryId);
+        }
+ 
         String productName = entity.getProductName();
         if (productName != null) {
-            stmt.bindString(2, productName);
+            stmt.bindString(3, productName);
         }
  
         String productImageUrl = entity.getProductImageUrl();
         if (productImageUrl != null) {
-            stmt.bindString(3, productImageUrl);
+            stmt.bindString(4, productImageUrl);
         }
-        stmt.bindLong(4, entity.getProductPrice());
-        stmt.bindLong(5, entity.getProductStock());
+        stmt.bindLong(5, entity.getProductPrice());
+        stmt.bindLong(6, entity.getProductStock());
  
         String desc = entity.getDesc();
         if (desc != null) {
-            stmt.bindString(6, desc);
+            stmt.bindString(7, desc);
         }
     }
 
@@ -122,11 +134,12 @@ public class ProductDao extends AbstractDao<Product, Long> {
     public Product readEntity(Cursor cursor, int offset) {
         Product entity = new Product( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // productName
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // productImageUrl
-            cursor.getInt(offset + 3), // productPrice
-            cursor.getInt(offset + 4), // productStock
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // desc
+            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // categoryId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // productName
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // productImageUrl
+            cursor.getInt(offset + 4), // productPrice
+            cursor.getInt(offset + 5), // productStock
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // desc
         );
         return entity;
     }
@@ -134,11 +147,12 @@ public class ProductDao extends AbstractDao<Product, Long> {
     @Override
     public void readEntity(Cursor cursor, Product entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setProductName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setProductImageUrl(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setProductPrice(cursor.getInt(offset + 3));
-        entity.setProductStock(cursor.getInt(offset + 4));
-        entity.setDesc(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setCategoryId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
+        entity.setProductName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setProductImageUrl(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setProductPrice(cursor.getInt(offset + 4));
+        entity.setProductStock(cursor.getInt(offset + 5));
+        entity.setDesc(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override

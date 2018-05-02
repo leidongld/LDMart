@@ -21,6 +21,7 @@ import com.example.leidong.ldmart.constants.Constants;
 import com.example.leidong.ldmart.greendao.ProductDao;
 import com.example.leidong.ldmart.secure.SecureUtils;
 import com.example.leidong.ldmart.storage.MySharedPreferences;
+import com.example.leidong.ldmart.utils.FontUtils;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -28,6 +29,7 @@ import butterknife.ButterKnife;
 
 /**
  * 商品管理界面
+ *
  * @author Lei Dong
  */
 public class ProductManageActivity extends Activity implements View.OnClickListener {
@@ -107,12 +109,14 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
         mProductManagePrice.setText(mProductPrice + "");
         mProductManageStock.setText(mProductStock + "");
         mProductManageDesc.setText(mProductDesc);
+        FontUtils.setFontFromAssets(mProductManageDesc, "fonts/doudouti.ttf");
 
         mMySharedPreferences = MySharedPreferences.getMySharedPreferences(this);
     }
 
     /**
      * 按钮点击事件的监听
+     *
      * @param view 点击的View
      */
     @Override

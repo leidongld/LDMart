@@ -133,7 +133,7 @@
                 android:id="@+id/product_manage_desc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:textColor="@color/black"
                 android:hint="请输入商品详情"
                 android:layout_weight="1"

@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 
 /**
  * 买家列表Fragment
+ *
  * @author Lei Dong
  */
 public class BuyerListFragment extends Fragment{

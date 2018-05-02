@@ -1,6 +1,8 @@
 package com.example.leidong.ldmart.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -148,34 +150,54 @@ public class UserActivity extends Activity implements View.OnClickListener {
     private void clickDeleteUserBtn() {
         //删除买家及对应订单
         if(mUserMode == Constants.BUYER_MODE){
-            OrderDao orderDao = MyApplication.getInstance().getDaoSession().getOrderDao();
-            List<Order> orderList = orderDao.queryBuilder().where(OrderDao.Properties.BuyerId.eq(mUserId)).list();
-            orderDao.deleteInTx(orderList);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.warning);
+            builder.setMessage(R.string.warning_delete_user);
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    OrderDao orderDao = MyApplication.getInstance().getDaoSession().getOrderDao();
+                    List<Order> orderList = orderDao.queryBuilder().where(OrderDao.Properties.BuyerId.eq(mUserId)).list();
+                    orderDao.deleteInTx(orderList);
 
-            BuyerDao buyerDao = MyApplication.getInstance().getDaoSession().getBuyerDao();
-            Buyer buyer = buyerDao.queryBuilder().where(BuyerDao.Properties.Id.eq(mUserId)).unique();
-            buyerDao.delete(buyer);
+                    BuyerDao buyerDao = MyApplication.getInstance().getDaoSession().getBuyerDao();
+                    Buyer buyer = buyerDao.queryBuilder().where(BuyerDao.Properties.Id.eq(mUserId)).unique();
+                    buyerDao.delete(buyer);
 
-            finish();
+                    finish();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, null);
+            builder.create().show();
         }
         //删除卖家及对应订单
         else{
-            OrderDao orderDao = MyApplication.getInstance().getDaoSession().getOrderDao();
-            List<Order> orderList = orderDao.loadAll();
-            orderDao.deleteInTx(orderList);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.warning);
+            builder.setMessage(R.string.warning_delete_user);
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    OrderDao orderDao = MyApplication.getInstance().getDaoSession().getOrderDao();
+                    List<Order> orderList = orderDao.loadAll();
+                    orderDao.deleteInTx(orderList);
 
-            SellerDao sellerDao = MyApplication.getInstance().getDaoSession().getSellerDao();
-            Seller seller = sellerDao.queryBuilder().where(SellerDao.Properties.Id.eq(mUserId)).unique();
-            sellerDao.delete(seller);
+                    SellerDao sellerDao = MyApplication.getInstance().getDaoSession().getSellerDao();
+                    Seller seller = sellerDao.queryBuilder().where(SellerDao.Properties.Id.eq(mUserId)).unique();
+                    sellerDao.delete(seller);
 
-            ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
-            List<Product> productList = productDao.loadAll();
-            productDao.deleteInTx(productList);
+                    ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
+                    List<Product> productList = productDao.loadAll();
+                    productDao.deleteInTx(productList);
 
-            mMySharedPreferences = MySharedPreferences.getMySharedPreferences(this);
-            mMySharedPreferences.save(Constants.IS_SELLER_EXIST, false);
+                    mMySharedPreferences = MySharedPreferences.getMySharedPreferences(MyApplication.getsContext());
+                    mMySharedPreferences.save(Constants.IS_SELLER_EXIST, false);
 
-            finish();
+                    finish();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, null);
+            builder.create().show();
         }
     }
 }

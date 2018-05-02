@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * 商品Bean
+ *
  * @author Lei Dong
  */
 
@@ -13,16 +14,18 @@ import org.greenrobot.greendao.annotation.Generated;
 public class Product {
     @Id(autoincrement = true)
     private Long id;
+    private Long categoryId;
     private String productName;
     private String productImageUrl;
     private int productPrice;
     private int productStock;
     private String desc;
 
-    @Generated(hash = 762026572)
-    public Product(Long id, String productName, String productImageUrl,
-            int productPrice, int productStock, String desc) {
+    @Generated(hash = 1598257425)
+    public Product(Long id, Long categoryId, String productName,
+            String productImageUrl, int productPrice, int productStock, String desc) {
         this.id = id;
+        this.categoryId = categoryId;
         this.productName = productName;
         this.productImageUrl = productImageUrl;
         this.productPrice = productPrice;
@@ -80,5 +83,13 @@ public class Product {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Long getCategoryId() {
+        return this.categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

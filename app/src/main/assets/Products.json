@@ -2,83 +2,284 @@
   [
     {
       "productId":0,
+      "categoryId":1,
       "productName":"精品脐橙",
       "productImage":"https://img12.360buyimg.com/babel/s360x360_jfs/t3295/14/5775084582/492685/47d076e7/587e0252Nf62a419b.jpg!q80.webp",
-      "productPrice":10,
+      "productPrice":1,
       "productNumber":100,
       "productDesc":"被春天吻过的鲜橙，生长期更长，耐心酝酿更优质的甜橙。"
     },
     {
       "productId":1,
+      "categoryId":1,
       "productName":"四川丑柑",
       "productImage":"https://img10.360buyimg.com/n2/jfs/t18676/183/164078159/297786/ea024d8b/5a607804Nae627ab7.jpg",
-      "productPrice":20,
+      "productPrice":2,
       "productNumber":100,
       "productDesc":"虽然我丑，但我好吃啊！"
     },
     {
       "productId":2,
+      "categoryId":1,
       "productName":"高山苹果",
       "productImage":"https://img11.360buyimg.com/n2/jfs/t9736/130/2196424951/348309/9e6d671c/59f1a5e3Nf3aa9d8c.jpg",
-      "productPrice":30,
+      "productPrice":3,
       "productNumber":100,
       "productDesc":"来自高山的优秀品种，它个大、味甜、口感清脆、广受大家喜爱。"
     },
     {
       "productId":3,
+      "categoryId":1,
       "productName":"库尔勒香梨",
       "productImage":"https://img11.360buyimg.com/n2/jfs/t8212/335/867296173/346941/42857e6f/59b0afceNd7a1adfa.jpg",
-      "productPrice":40,
+      "productPrice":4,
       "productNumber":100,
       "productDesc":"来自新疆库尔勒的“奶西姆提。皮包核小、清香四溢，一口甜到心底”"
     },
     {
       "productId":4,
+      "categoryId":1,
       "productName":"桂圆",
       "productImage":"https://img13.360buyimg.com/n2/jfs/t10210/114/1450936980/129084/3c5d1ad3/59e1bd05N6cb2de46.jpg",
-      "productPrice":50,
+      "productPrice":5,
       "productNumber":100,
       "productDesc":"珍珠级桂圆，才能吃出3D肉感。完美绝非偶然，但每个细节让3D肉感成为必然。"
     },
     {
       "productId":5,
+      "categoryId":1,
       "productName":"冰糖橙",
       "productImage":"https://img11.360buyimg.com/n2/jfs/t13870/169/964990985/511126/caef33a4/5a17c980N21c236e4.jpg",
-      "productPrice":60,
+      "productPrice":6,
       "productNumber":100,
       "productDesc":"橙心橙意橙全你的胃。恰似冰糖，小时候吃的橙味。"
     },
     {
       "productId":6,
+      "categoryId":1,
       "productName":"奶油草莓",
       "productImage":"https://img11.360buyimg.com/n1/s160x160_jfs/t13255/307/954930869/264452/13325a16/5a179323Na19d1baf.jpg",
-      "productPrice":70,
+      "productPrice":7,
       "productNumber":100,
       "productDesc":"微微一笑为红颜。"
     },
     {
       "productId":7,
+      "categoryId":1,
       "productName":"智利提子",
       "productImage":"https://img13.360buyimg.com/n1/s160x160_jfs/t15775/362/2493591443/119190/1c636115/5ab0ab84N725bbaed.jpg",
-      "productPrice":80,
+      "productPrice":8,
       "productNumber":100,
       "productDesc":"饱满性感好身材，鲜甜爆汁。恋上红提，从鲜美到甜润的旅程。"
     },
     {
       "productId":8,
-      "productName":"青芒",
+      "categoryId":1,
+      "productName":"越南青芒",
       "productImage":"https://img10.360buyimg.com/n7/jfs/t3832/361/3992685655/451734/4d12e581/58a6bfa1N56a8232f.jpg",
-      "productPrice":90,
+      "productPrice":9,
       "productNumber":100,
       "productDesc":"海南来的，甜得纯粹。"
     },
     {
       "productId":9,
-      "productName":"车厘子",
+      "categoryId":1,
+      "productName":"美国车厘子",
       "productImage":"https://img11.360buyimg.com/n7/jfs/t18133/210/591813967/313572/fdbc913a/5a97bad9N902bd478.jpg",
-      "productPrice":100,
+      "productPrice":10,
       "productNumber":100,
       "productDesc":"谁能经得住它的诱惑。满嘴爆甜，扣扣惊喜的大甜妞。"
+    },
+
+
+
+
+
+    {
+      "productId":10,
+      "categoryId":2,
+      "productName":"有机圣女果",
+      "productImage":"https://img13.360buyimg.com/n2/jfs/t5266/90/352723115/531374/b73117c5/58fdb912N5fc81862.jpg",
+      "productPrice":1,
+      "productNumber":100,
+      "productDesc":"每一颗都是靠自己的力量吸收养分、沐浴阳光，优质优选，口感甜润多汁，味浓可口，凉拌、生吃、炒菜好选择。"
+    },
+    {
+      "productId":11,
+      "categoryId":2,
+      "productName":"有机黄瓜",
+      "productImage":"https://img10.360buyimg.com/n2/jfs/t3892/26/992876975/475076/8bb3ac2f/58661dbaN7998fb64.jpg",
+      "productPrice":2,
+      "productNumber":100,
+      "productDesc":"山东寿光小黄瓜，清甜爽口，汁多脆嫩。"
+    },
+    {
+      "productId":12,
+      "categoryId":2,
+      "productName":"甜玉米",
+      "productImage":"https://img11.360buyimg.com/n2/jfs/t4378/2/2051979024/264490/a1674250/58ca35deN9d611dae.jpg",
+      "productPrice":3,
+      "productNumber":100,
+      "productDesc":"源自云南玉溪，自然清香，光滑晶莹，新鲜原味，营养丰富。"
+    },
+    {
+      "productId":13,
+      "categoryId":2,
+      "productName":"冰草菜",
+      "productImage":"https://img13.360buyimg.com/n2/jfs/t3046/182/8585305160/361120/2b7c973d/58c629ecN2d0e5c8b.jpg",
+      "productPrice":4,
+      "productNumber":100,
+      "productDesc":"优质优选，叶片肥厚多汁，鲜咸清凉，凉拌、配菜好选择。"
+    },
+    {
+      "productId":14,
+      "categoryId":2,
+      "productName":"圆白菜",
+      "productImage":"https://img11.360buyimg.com/n2/jfs/t3655/363/2056131123/73089/ff341da/5843da08N233e4886.jpg",
+      "productPrice":5,
+      "productNumber":100,
+      "productDesc":"圆白菜又名卷心菜，个体饱满圆润，叶片紧实，口感脆嫩清新，营养丰富，味道鲜美。"
+    },
+    {
+      "productId":15,
+      "categoryId":2,
+      "productName":"时令毛豆",
+      "productImage":"https://img14.360buyimg.com/n2/jfs/t4459/318/2597208588/259563/b1806ab1/58f0919bNe099e45d.jpg",
+      "productPrice":6,
+      "productNumber":100,
+      "productDesc":"豆荚嫩绿饱满，豆粒平滑光泽，豆香清新怡人，入口细嫩鲜滑。"
+    },
+    {
+      "productId":16,
+      "categoryId":2,
+      "productName":"有机胡萝卜",
+      "productImage":"https://img12.360buyimg.com/n1/jfs/t4267/141/1272751458/256045/9bbf5193/58bfbeadN2ea020d3.jpg",
+      "productPrice":7,
+      "productNumber":100,
+      "productDesc":"靓丽“小人参”，颜色靓丽，生脆香甜，优选宝贝辅食，营养丰富。"
+    },
+    {
+      "productId":17,
+      "categoryId":2,
+      "productName":"有机马铃薯",
+      "productImage":"https://img13.360buyimg.com/n1/jfs/t3085/18/6862272188/287373/a4664251/58ad507eN4847a173.jpg",
+      "productPrice":8,
+      "productNumber":100,
+      "productDesc":"大小匀称，细腻绵软的口感。"
+    },
+    {
+      "productId":18,
+      "categoryId":2,
+      "productName":"有机青椒",
+      "productImage":"https://img14.360buyimg.com/n1/jfs/t3874/87/2559367699/278423/d2cdf639/58ad3089N63d9d55f.jpg",
+      "productPrice":9,
+      "productNumber":100,
+      "productDesc":"优质优选，色泽浅绿、有光泽、肉质细腻、气味微辣略甜。"
+    },
+    {
+      "productId":19,
+      "categoryId":2,
+      "productName":"有机洋葱",
+      "productImage":"https://img13.360buyimg.com/n1/jfs/t3115/267/6822690812/257421/6de2053/58ad5c4eNb12c9225.jpg",
+      "productPrice":10,
+      "productNumber":100,
+      "productDesc":"农场直供、新鲜直达，干辣爽口、葱香馥郁，有机栽培，食用更放心。"
+    },
+
+
+
+
+
+
+    {
+      "productId":20,
+      "categoryId":3,
+      "productName":"优质鸡头米",
+      "productImage":"https://img10.360buyimg.com/n1/s150x150_jfs/t18172/339/1582818636/134349/e1567048/5acedb99N6627f42f.jpg",
+      "productPrice":1,
+      "productNumber":100,
+      "productDesc":"红颜圆润，颗粒饱满，清新粉糯，地道淳朴。"
+    },
+    {
+      "productId":21,
+      "categoryId":3,
+      "productName":"优质黑米",
+      "productImage":"https://img12.360buyimg.com/n1/s150x150_jfs/t463/171/668571561/167303/90e71d94/547c62edNf7f097b8.jpg",
+      "productPrice":2,
+      "productNumber":100,
+      "productDesc":"黑米是老百姓口中一种十分有营养的食材，不仅口味鲜美，还有开胃益中、滑涩补精、健脾暖肝、舒筋活血等功效。"
+    },
+    {
+      "productId":22,
+      "categoryId":3,
+      "productName":"精品农家花生",
+      "productImage":"https://img12.360buyimg.com/n1/s150x150_jfs/t19177/109/1521390955/107872/71530040/5acecf0bNc29306f4.jpg",
+      "productPrice":3,
+      "productNumber":100,
+      "productDesc":"精品农家花生，填满你的胃。"
+    },
+    {
+      "productId":23,
+      "categoryId":3,
+      "productName":"优质黄小米",
+      "productImage":"https://img10.360buyimg.com/n1/s150x150_jfs/t739/311/6784594/175835/d218f67f/547c5edeN3eaf499e.jpg",
+      "productPrice":4,
+      "productNumber":100,
+      "productDesc":"颗粒完整、自然清新、口感香醇、营养丰富、形态均匀。"
+    },
+    {
+      "productId":24,
+      "categoryId":3,
+      "productName":"农家生黑芝麻",
+      "productImage":"https://img13.360buyimg.com/n1/s150x150_jfs/t19114/75/1576200893/96821/a5cb5246/5aced4c5Ne11c3250.jpg",
+      "productPrice":5,
+      "productNumber":100,
+      "productDesc":"拒绝染色，口感香醇，营养价值很高哦。"
+    },
+    {
+      "productId":25,
+      "categoryId":3,
+      "productName":"玉米渣",
+      "productImage":"https://img10.360buyimg.com/n1/s150x150_jfs/t19564/258/1696085143/176479/dfcd6a10/5ad5a1adN34a064b6.jpg",
+      "productPrice":6,
+      "productNumber":100,
+      "productDesc":"颗粒饱满的好味道。"
+    },
+    {
+      "productId":26,
+      "categoryId":3,
+      "productName":"红高粱米",
+      "productImage":"https://img10.360buyimg.com/n1/s150x150_jfs/t19147/187/1737473263/105825/2a44abf8/5ad5a2a7N2f034001.jpg",
+      "productPrice":7,
+      "productNumber":100,
+      "productDesc":"好东西不解释。"
+    },
+    {
+      "productId":27,
+      "categoryId":3,
+      "productName":"红豆",
+      "productImage":"https://img13.360buyimg.com/n1/s150x150_jfs/t17350/318/1503561521/100752/920b5acc/5aced2c4N7d34c88d.jpg",
+      "productPrice":8,
+      "productNumber":100,
+      "productDesc":"红豆生南国，春来发几枝，愿君多采撷，此物最相思。"
+    },
+    {
+      "productId":28,
+      "categoryId":3,
+      "productName":"绿豆",
+      "productImage":"https://img10.360buyimg.com/n1/s150x150_jfs/t19141/145/1496173157/85183/925ca304/5aced796Nb7d3a3b5.jpg",
+      "productPrice":9,
+      "productNumber":100,
+      "productDesc":"绿豆的介绍"
+    },
+    {
+      "productId":29,
+      "categoryId":3,
+      "productName":"糯米",
+      "productImage":"https://img12.360buyimg.com/n1/s150x150_jfs/t17437/164/1738085477/91869/7a7bc90a/5ad57fa7Nd82f0222.jpg",
+      "productPrice":10,
+      "productNumber":100,
+      "productDesc":"糯米的介绍"
     }
   ]
 }

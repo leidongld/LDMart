@@ -8,6 +8,7 @@ import java.util.Random;
 
 /**
  * 事件相关工具类
+ *
  * @author Lei Dong
  */
 public class TimeUtils {
@@ -15,6 +16,7 @@ public class TimeUtils {
 
     /**
      * 得到系统时间
+     *
      * @return 系统时间
      */
     public static String getCurrentSysTime() {
@@ -26,6 +28,7 @@ public class TimeUtils {
 
     /**
      * 产生有0-9的随机数组成的4位字符串用于生成订单号
+     *
      * @param randomCounts 位数
      * @return 随机的字符串
      */
@@ -40,6 +43,7 @@ public class TimeUtils {
 
     /**
      * 生成订单号
+     *
      * @return 订单Id
      */
     public static String generateOrderId() {

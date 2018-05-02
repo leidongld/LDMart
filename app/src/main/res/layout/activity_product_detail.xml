@@ -58,8 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="12dp"
-                android:textSize="16sp"
-                android:text="这里是产品的详细介绍"
+                android:textSize="22sp"
                 android:layout_marginTop="12dp"/>
         </LinearLayout>
     </ScrollView>

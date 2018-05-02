@@ -23,12 +23,13 @@ import com.example.leidong.ldmart.greendao.BuyerDao;
 import com.example.leidong.ldmart.greendao.SellerDao;
 import com.example.leidong.ldmart.storage.MySharedPreferences;
 import com.example.leidong.ldmart.utils.AuthenticateUtils;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * 登陆界面
+ *
+ * @author Lei Dong
  */
 public class LoginActivity extends Activity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private static final String TAG = "LoginActivity";
@@ -67,6 +68,7 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
 
     /**
      * 用户身份码
+     *
      * buyer  1
      * seller 2
      * root   3
@@ -83,7 +85,7 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
     private SellerDao mSellerDao;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -115,7 +117,7 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
 
         //更改标志，并非第一次登陆
         mMySharedPreferences = MySharedPreferences.getMySharedPreferences(LoginActivity.this);
-        mMySharedPreferences.save(Constants.IS_FIRST_LOGIN, true);
+        mMySharedPreferences.save(Constants.IS_FIRST_LOGIN, false);
 
         mBuyerDao = MyApplication.getInstance().getDaoSession().getBuyerDao();
         mSellerDao = MyApplication.getInstance().getDaoSession().getSellerDao();
@@ -123,8 +125,9 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
 
     /**
      * RadioGroup的点选择操作
+     *
      * @param radioGroup RadioGroup
-     * @param i 编号
+     * @param i          编号
      */
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -134,41 +137,41 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
         String passwordTemp = mPasswordEt.getText().toString().trim();
 
         //选择买家模式
-        if(i == R.id.rbtn_buyer){
+        if (i == R.id.rbtn_buyer) {
             mLoginLayout.setBackgroundResource(R.drawable.bg_buyer);
             modeNumber = Constants.BUYER_MODE;
-            if(usernameTemp.length() > 0 && passwordTemp.length() > 0){
+            if (usernameTemp.length() > 0 && passwordTemp.length() > 0) {
                 mLoginBtn.setVisibility(View.VISIBLE);
             }
         }
         //选择卖家模式
-        else if(i == R.id.rbtn_seller){
+        else if (i == R.id.rbtn_seller) {
             mLoginLayout.setBackgroundResource(R.drawable.bg_seller);
             modeNumber = Constants.SELLER_MODE;
-            if(usernameTemp.length() > 0 && passwordTemp.length() > 0){
+            if (usernameTemp.length() > 0 && passwordTemp.length() > 0) {
                 mLoginBtn.setVisibility(View.VISIBLE);
             }
         }
         //选择管理员模式
-        else if(i == R.id.rbtn_root){
+        else if (i == R.id.rbtn_root) {
             mLoginLayout.setBackgroundResource(R.drawable.bg_root);
             modeNumber = Constants.ROOT_MODE;
-            if(usernameTemp.length() > 0 && passwordTemp.length() > 0){
+            if (usernameTemp.length() > 0 && passwordTemp.length() > 0) {
                 mLoginBtn.setVisibility(View.VISIBLE);
             }
-        }
-        else{
+        } else {
 
         }
     }
 
     /**
      * 组件点击操作
+     *
      * @param view 点击的View
      */
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btn_login:
                 clickLoginBtn();
                 break;
@@ -185,8 +188,8 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
         String passwordTemp = mPasswordEt.getText().toString().trim();
 
         //买家模式
-        if(modeNumber == Constants.BUYER_MODE){
-            if(AuthenticateUtils.authenticateBuyer(usernameTemp, passwordTemp)) {
+        if (modeNumber == Constants.BUYER_MODE) {
+            if (AuthenticateUtils.authenticateBuyer(usernameTemp, passwordTemp)) {
                 Buyer buyer = mBuyerDao.queryBuilder().where(BuyerDao.Properties.Username.eq(usernameTemp)).unique();
                 Long buyerId = buyer.getId();
 
@@ -198,16 +201,15 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
                 intent.putExtra(Constants.BUYER_DATA, bundle);
                 startActivity(intent);
                 finish();
-            }
-            else{
+            } else {
                 //提醒用户用户名或者密码输入不正确
                 showAlertDialog();
             }
         }
         //卖家模式
-        else if(modeNumber == Constants.SELLER_MODE){
+        else if (modeNumber == Constants.SELLER_MODE) {
             //认证成功
-            if(AuthenticateUtils.authenticateSeller(usernameTemp, passwordTemp)) {
+            if (AuthenticateUtils.authenticateSeller(usernameTemp, passwordTemp)) {
                 Seller seller = mSellerDao.queryBuilder().where(SellerDao.Properties.Username.eq(usernameTemp)).unique();
                 Long sellerId = seller.getId();
 
@@ -221,18 +223,17 @@ public class LoginActivity extends Activity implements RadioGroup.OnCheckedChang
                 finish();
             }
             //认证失败
-            else{
+            else {
                 showAlertDialog();
             }
         }
         //管理员模式
-        else if(modeNumber == Constants.ROOT_MODE){
-            if(AuthenticateUtils.authenticateRoot(usernameTemp, passwordTemp)) {
+        else if (modeNumber == Constants.ROOT_MODE) {
+            if (AuthenticateUtils.authenticateRoot(usernameTemp, passwordTemp)) {
                 Intent intent = new Intent(LoginActivity.this, MainRootActivity.class);
                 startActivity(intent);
                 finish();
-            }
-            else{
+            } else {
                 //提醒用户用户名或者密码输入不正确
                 showAlertDialog();
             }

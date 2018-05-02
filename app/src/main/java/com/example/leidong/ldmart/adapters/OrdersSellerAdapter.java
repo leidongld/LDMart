@@ -25,11 +25,13 @@ import com.squareup.picasso.Picasso;
 
 /**
  * 卖家订单适配器
+ *
  * @author Lei Dong
  */
 public class OrdersSellerAdapter extends RecyclerView.Adapter<OrdersSellerAdapter.ViewHolder> {
     //Context
     private Context mContext;
+
     //订单数组
     private Order[] mOrders;
 

@@ -19,11 +19,13 @@ import java.util.List;
 
 /**
  * 数据加载相关工具类
+ *
  * @author Lei Dong
  */
 public class LoadUtils {
     /**
      * 获取assets文件夹下的对应Json文件并将其转换为String类型返回
+     *
      * @param fileName 文件名
      * @param context Context
      * @return Json字符串
@@ -50,11 +52,12 @@ public class LoadUtils {
 
     /**
      * 加载客户看到的商品信息
+     *
      * @return 商品信息
      */
-    public static Product[] loadBuyerProducts() {
+    public static Product[] loadBuyerProductsByCategoryId(Long categoryId) {
         ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
-        List<Product> productList = productDao.loadAll();
+        List<Product> productList = productDao.queryBuilder().where(ProductDao.Properties.CategoryId.eq(categoryId)).list();
 
         Product[] products = new Product[productList.size()];
         for(int i = 0; i < productList.size(); i++){
@@ -65,11 +68,13 @@ public class LoadUtils {
 
     /**
      * 加载商户看到的产品信息
+     *
+     * @param categoryId 目录编号
      * @return 商品信息
      */
-    public static Product[] loadSellerProducts() {
+    public static Product[] loadSellerProductsByCategoryId(Long categoryId) {
         ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
-        List<Product> productList = productDao.loadAll();
+        List<Product> productList = productDao.queryBuilder().where(ProductDao.Properties.CategoryId.eq(categoryId)).list();
         if(productList.size() == 0){
             return null;
         }
@@ -82,6 +87,7 @@ public class LoadUtils {
 
     /**
      * 加载买家的订单信息
+     *
      * @param mBuyerId 买家Id
      * @return 该买家的全部订单
      */
@@ -100,6 +106,7 @@ public class LoadUtils {
 
     /**
      * 加载全部的卖家订单
+     *
      * @return 全部的卖家订单
      */
     public static Order[] loadSellerOrders() {
@@ -117,6 +124,7 @@ public class LoadUtils {
 
     /**
      * 以Json格式加载商品信息
+     *
      * @return 商品信息
      */
     public static Products.ProductsBean[] loadProductsSellerDataFromJson() {
@@ -138,6 +146,7 @@ public class LoadUtils {
 
     /**
      * 根据输入的日期过滤买家订单
+     *
      * @param mBuyerId 买家Id
      * @param s 输入内容
      * @return 符合条件的订单数组
@@ -162,6 +171,7 @@ public class LoadUtils {
 
     /**
      * 根据输入的日期过滤卖家订单
+     *
      * @param s 输入内容
      * @return 符合条件的订单数组
      */
@@ -184,16 +194,18 @@ public class LoadUtils {
 
     /**
      * 根据输入的名称过滤买家商品
-     * @param s 输入的名称
+     *
+     * @param name 输入的名称
+     * @param categoryId 目录编号
      * @return 符合要求的商品数组
      */
-    public static Product[] loadBuyerProductsByName(String s) {
+    public static Product[] loadBuyerProductsByNameAndCategoryId(String name, Long categoryId) {
         Product[] products;
         ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
-        List<Product> productList = productDao.loadAll();
+        List<Product> productList = productDao.queryBuilder().where(ProductDao.Properties.CategoryId.eq(categoryId)).list();
         List<Product> tempList = new ArrayList<>();
         for(Product product : productList){
-            if(product.getProductName().contains(s)){
+            if(product.getProductName().contains(name)){
                 tempList.add(product);
             }
         }
@@ -206,13 +218,15 @@ public class LoadUtils {
 
     /**
      * 根据输入的名称过滤卖家商品
+     *
      * @param s 输入的名称
+     * @param categoryId 目录编号
      * @return 符合要求的商品数组
      */
-    public static Product[] loadSellerProductsByName(String s) {
+    public static Product[] loadSellerProductsByNameAndCategoryId(String s, Long categoryId) {
         Product[] products;
         ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
-        List<Product> productList = productDao.loadAll();
+        List<Product> productList = productDao.queryBuilder().where(ProductDao.Properties.CategoryId.eq(categoryId)).list();
         List<Product> tempList = new ArrayList<>();
         for(Product product : productList){
             if(product.getProductName().contains(s)){

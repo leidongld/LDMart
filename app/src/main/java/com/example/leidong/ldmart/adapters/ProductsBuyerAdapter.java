@@ -20,16 +20,19 @@ import com.squareup.picasso.Picasso;
 
 /**
  * 买家产品列表适配器
+ *
  * @author Lei Dong
  */
 public class ProductsBuyerAdapter extends RecyclerView.Adapter<ProductsBuyerAdapter.ViewHolder> {
     //Context
     private Context mContext;
+
     //商品数组
     private Product[] mProducts;
 
     /**
      * 构造器
+     *
      * @param context Context
      * @param products 商品数组
      */

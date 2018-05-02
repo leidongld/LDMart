@@ -26,7 +26,7 @@ public class OrderDao extends AbstractDao<Order, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property BuyerId = new Property(1, Long.class, "buyerId", false, "BUYER_ID");
-        public final static Property ProductId = new Property(2, long.class, "productId", false, "PRODUCT_ID");
+        public final static Property ProductId = new Property(2, Long.class, "productId", false, "PRODUCT_ID");
         public final static Property OrderId = new Property(3, String.class, "orderId", false, "ORDER_ID");
         public final static Property OrderTime = new Property(4, String.class, "orderTime", false, "ORDER_TIME");
         public final static Property ProductNumber = new Property(5, int.class, "productNumber", false, "PRODUCT_NUMBER");
@@ -48,7 +48,7 @@ public class OrderDao extends AbstractDao<Order, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"ORDER\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"BUYER_ID\" INTEGER," + // 1: buyerId
-                "\"PRODUCT_ID\" INTEGER NOT NULL ," + // 2: productId
+                "\"PRODUCT_ID\" INTEGER," + // 2: productId
                 "\"ORDER_ID\" TEXT," + // 3: orderId
                 "\"ORDER_TIME\" TEXT," + // 4: orderTime
                 "\"PRODUCT_NUMBER\" INTEGER NOT NULL ," + // 5: productNumber
@@ -74,7 +74,11 @@ public class OrderDao extends AbstractDao<Order, Long> {
         if (buyerId != null) {
             stmt.bindLong(2, buyerId);
         }
-        stmt.bindLong(3, entity.getProductId());
+ 
+        Long productId = entity.getProductId();
+        if (productId != null) {
+            stmt.bindLong(3, productId);
+        }
  
         String orderId = entity.getOrderId();
         if (orderId != null) {
@@ -102,7 +106,11 @@ public class OrderDao extends AbstractDao<Order, Long> {
         if (buyerId != null) {
             stmt.bindLong(2, buyerId);
         }
-        stmt.bindLong(3, entity.getProductId());
+ 
+        Long productId = entity.getProductId();
+        if (productId != null) {
+            stmt.bindLong(3, productId);
+        }
  
         String orderId = entity.getOrderId();
         if (orderId != null) {
@@ -127,7 +135,7 @@ public class OrderDao extends AbstractDao<Order, Long> {
         Order entity = new Order( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // buyerId
-            cursor.getLong(offset + 2), // productId
+            cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2), // productId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // orderId
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // orderTime
             cursor.getInt(offset + 5), // productNumber
@@ -140,7 +148,7 @@ public class OrderDao extends AbstractDao<Order, Long> {
     public void readEntity(Cursor cursor, Order entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setBuyerId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
-        entity.setProductId(cursor.getLong(offset + 2));
+        entity.setProductId(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
         entity.setOrderId(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setOrderTime(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setProductNumber(cursor.getInt(offset + 5));

@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 
 /**
  * 卖家个人信息Fragment
+ *
  * @author Lei Dong
  */
 public class MySellerFragment extends Fragment implements View.OnClickListener {

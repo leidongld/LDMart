@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * 买家Bean
+ *
  * @author Lei Dong
  */
 

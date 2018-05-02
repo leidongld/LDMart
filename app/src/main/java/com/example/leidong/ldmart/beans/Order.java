@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Id;
 
 /**
  * 订单Bean
+ *
  * @author Lei Dong
  */
 
@@ -20,8 +21,8 @@ public class Order {
     private int productNumber;
     private int orderState;
 
-    @Generated(hash = 1497095576)
-    public Order(Long id, Long buyerId, long productId, String orderId, String orderTime,
+    @Generated(hash = 1101004423)
+    public Order(Long id, Long buyerId, Long productId, String orderId, String orderTime,
             int productNumber, int orderState) {
         this.id = id;
         this.buyerId = buyerId;
@@ -89,6 +90,10 @@ public class Order {
     }
 
     public void setProductId(long productId) {
+        this.productId = productId;
+    }
+
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 }

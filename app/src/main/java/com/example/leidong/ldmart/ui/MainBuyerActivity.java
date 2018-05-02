@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 
 /**
  * 买家主界面
+ *
  * @author Lei Dong
  */
 public class MainBuyerActivity extends Activity implements OnTabSelectListener {
@@ -97,6 +98,7 @@ public class MainBuyerActivity extends Activity implements OnTabSelectListener {
 
     /**
      * 底部导航栏的点击
+     *
      * @param tabId tab编号
      */
     @Override

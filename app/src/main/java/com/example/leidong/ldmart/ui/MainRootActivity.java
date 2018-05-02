@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 
 /**
  * 管理员主界面
+ *
  * @author Lei Dong
  */
 public class MainRootActivity extends Activity implements OnTabSelectListener {
@@ -68,6 +69,7 @@ public class MainRootActivity extends Activity implements OnTabSelectListener {
 
     /**
      * 底部导航栏的点击
+     *
      * @param tabId tab编号
      */
     @Override

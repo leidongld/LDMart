@@ -33,6 +33,7 @@ import butterknife.ButterKnife;
 
 /**
  * 添加用户的Fragment
+ *
  * @author Lei Dong
  */
 public class AddUserFragment extends Fragment implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
@@ -115,7 +116,7 @@ public class AddUserFragment extends Fragment implements RadioGroup.OnCheckedCha
     }
 
     /**
-     *
+     * radioButton选择
      * @param radioGroup RadioGroup
      * @param i 编号
      */
@@ -158,6 +159,7 @@ public class AddUserFragment extends Fragment implements RadioGroup.OnCheckedCha
 
     /**
      * 按钮的点击事件
+     *
      * @param view 点击的View
      */
     @Override
@@ -214,6 +216,7 @@ public class AddUserFragment extends Fragment implements RadioGroup.OnCheckedCha
             mProductDao = MyApplication.getInstance().getDaoSession().getProductDao();
             for (Products.ProductsBean mProductsBean : mProductsBeans) {
                 Product product = new Product();
+                product.setCategoryId((long) mProductsBean.getCategoryId());
                 product.setProductName(mProductsBean.getProductName());
                 product.setProductImageUrl(mProductsBean.getProductImage());
                 product.setProductPrice(mProductsBean.getProductPrice());

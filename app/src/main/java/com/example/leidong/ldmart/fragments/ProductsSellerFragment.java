@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import com.example.leidong.ldmart.MyApplication;
@@ -23,9 +24,10 @@ import butterknife.ButterKnife;
 
 /**
  * 卖家商品Fragment
+ *
  * @author Lei Dong
  */
-public class ProductsSellerFragment extends Fragment {
+public class ProductsSellerFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "ProductsSellerFragment";
 
     //搜索框
@@ -35,6 +37,16 @@ public class ProductsSellerFragment extends Fragment {
     //商品列表
     @BindView(R.id.products_list)
     RecyclerView mProductsRecyclerView;
+
+    @BindView(R.id.category_fruits_ibt)
+    ImageButton mCategoryFruitsIbt;
+
+    @BindView(R.id.category_vegetables_ibt)
+    ImageButton mCategoryVegetablesIbt;
+
+    @BindView(R.id.category_grains_ibt)
+    ImageButton mCategoryGrainsIbt;
+
 
     //全部商品
     private Product[] mProducts;
@@ -48,8 +60,10 @@ public class ProductsSellerFragment extends Fragment {
     //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
+    private Long mCategoryMode = Constants.CATEGORY_FRUITS;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_products_seller, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -78,16 +92,41 @@ public class ProductsSellerFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if(TextUtils.isEmpty(s)){
-                    mProducts = LoadUtils.loadSellerProducts();
-                }
-                else{
-                    mProducts = LoadUtils.loadSellerProductsByName(s);
+                if (TextUtils.isEmpty(s)) {
+                    if(mCategoryMode == Constants.CATEGORY_FRUITS){
+                        mProducts = LoadUtils.loadSellerProductsByCategoryId(Constants.CATEGORY_FRUITS);
+                    }
+                    else if(mCategoryMode == Constants.CATEGORY_VEGETABLES){
+                        mProducts = LoadUtils.loadSellerProductsByCategoryId(Constants.CATEGORY_VEGETABLES);
+                    }
+                    else if(mCategoryMode == Constants.CATEGORY_GRAINS){
+                        mProducts = LoadUtils.loadSellerProductsByCategoryId(Constants.CATEGORY_GRAINS);
+                    }
+                    else{
+
+                    }
+                } else {
+                    if(mCategoryMode == Constants.CATEGORY_FRUITS){
+                        mProducts = LoadUtils.loadSellerProductsByNameAndCategoryId(s, Constants.CATEGORY_FRUITS);
+                    }
+                    else if(mCategoryMode == Constants.CATEGORY_VEGETABLES){
+                        mProducts = LoadUtils.loadSellerProductsByNameAndCategoryId(s, Constants.CATEGORY_VEGETABLES);
+                    }
+                    else if(mCategoryMode == Constants.CATEGORY_GRAINS){
+                        mProducts = LoadUtils.loadSellerProductsByNameAndCategoryId(s, Constants.CATEGORY_GRAINS);
+                    }
+                    else{
+
+                    }
                 }
                 mProductsRecyclerView.setAdapter(new ProductsSellerAdapter(MyApplication.getsContext(), mProducts));
                 return false;
             }
         });
+
+        mCategoryFruitsIbt.setOnClickListener(this);
+        mCategoryVegetablesIbt.setOnClickListener(this);
+        mCategoryGrainsIbt.setOnClickListener(this);
     }
 
     /**
@@ -98,15 +137,48 @@ public class ProductsSellerFragment extends Fragment {
         mUserMode = mMySharedPreferences.load(Constants.USER_MODE, 0);
         mSellerId = mMySharedPreferences.load(Constants.SELLER_ID, 0L);
 
-        mProducts = LoadUtils.loadSellerProducts();
+        mProducts = LoadUtils.loadSellerProductsByCategoryId(Constants.CATEGORY_FRUITS);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MyApplication.getsContext(), 2);
         mProductsRecyclerView.setLayoutManager(gridLayoutManager);
         mProductsRecyclerView.setAdapter(new ProductsSellerAdapter(MyApplication.getsContext(), mProducts));
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         initWidgets();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    /**
+     * 按钮点击事件
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.category_fruits_ibt:
+                mCategoryMode = Constants.CATEGORY_FRUITS;
+                mProducts = LoadUtils.loadSellerProductsByCategoryId(mCategoryMode);
+                mProductsRecyclerView.setAdapter(new ProductsSellerAdapter(MyApplication.getsContext(), mProducts));
+                break;
+            case R.id.category_vegetables_ibt:
+                mCategoryMode = Constants.CATEGORY_VEGETABLES;
+                mProducts = LoadUtils.loadSellerProductsByCategoryId(mCategoryMode);
+                mProductsRecyclerView.setAdapter(new ProductsSellerAdapter(MyApplication.getsContext(), mProducts));
+                break;
+            case R.id.category_grains_ibt:
+                mCategoryMode = Constants.CATEGORY_GRAINS;
+                mProducts = LoadUtils.loadSellerProductsByCategoryId(mCategoryMode);
+                mProductsRecyclerView.setAdapter(new ProductsSellerAdapter(MyApplication.getsContext(), mProducts));
+                break;
+            default:
+                break;
+        }
     }
 }

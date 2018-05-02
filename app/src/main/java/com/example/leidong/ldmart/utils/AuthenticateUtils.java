@@ -12,11 +12,13 @@ import java.util.List;
 
 /**
  * 认证相关工具类
+ *
  * @author Lei Dong
  */
 public class AuthenticateUtils {
     /**
      * 认证Root管理员的登陆信息
+     *
      * @param usernameTemp 待认证的Root用户名
      * @param passwordTemp 待认证的Root密码
      * @return 认证是否成功
@@ -32,6 +34,7 @@ public class AuthenticateUtils {
 
     /**
      * 认证商家的登录信息
+     *
      * @param usernameTemp 待认证的卖家用户名
      * @param passwordTemp 待认证的卖家密码
      * @return 认证是否成功
@@ -51,6 +54,7 @@ public class AuthenticateUtils {
 
     /**
      * 认证买家的登录信息
+     *
      * @param usernameTemp 待认证的买家用户名
      * @param passwordTemp 待认证的买家密码
      * @return 认证是否成功
@@ -73,6 +77,7 @@ public class AuthenticateUtils {
 
     /**
      * 判断此Buyer是否已经存在
+     *
      * @param username 买家用户名
      * @return 买家是否存在
      */

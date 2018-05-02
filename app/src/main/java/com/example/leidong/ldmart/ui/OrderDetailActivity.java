@@ -26,6 +26,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * 订单详情界面
+ *
+ * @author Lei Dong
+ */
 public class OrderDetailActivity extends Activity{
     private static final String TAG = "OrderDetailActivity";
 

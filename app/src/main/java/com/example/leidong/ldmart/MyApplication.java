@@ -11,6 +11,7 @@ import com.example.leidong.ldmart.greendao.DaoSession;
 
 /**
  * App初始化类
+ *
  * @author Lei Dong
  */
 public class MyApplication extends Application {
@@ -40,6 +41,7 @@ public class MyApplication extends Application {
 
     /**
      * 得到MyApplication对象
+     *
      * @return
      */
     public static MyApplication getInstance(){
@@ -48,6 +50,7 @@ public class MyApplication extends Application {
 
     /**
      * 得到当前Context
+     *
      * @return
      */
     public static Context getsContext(){
@@ -56,6 +59,7 @@ public class MyApplication extends Application {
 
     /**
      * 得到AssetManager
+     *
      * @return
      */
     public static AssetManager getsAssetManager(){
@@ -74,6 +78,7 @@ public class MyApplication extends Application {
 
     /**
      * 得到DaoSession对象
+     *
      * @return
      */
     public DaoSession getDaoSession() {
@@ -82,6 +87,7 @@ public class MyApplication extends Application {
 
     /**
      * 得到SQLite数据库对象
+     *
      * @return
      */
     public SQLiteDatabase getDb() {

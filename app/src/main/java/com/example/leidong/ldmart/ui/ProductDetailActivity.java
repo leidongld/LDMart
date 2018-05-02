@@ -24,6 +24,7 @@ import com.example.leidong.ldmart.greendao.OrderDao;
 import com.example.leidong.ldmart.greendao.ProductDao;
 import com.example.leidong.ldmart.secure.SecureUtils;
 import com.example.leidong.ldmart.storage.MySharedPreferences;
+import com.example.leidong.ldmart.utils.FontUtils;
 import com.example.leidong.ldmart.utils.TimeUtils;
 import com.squareup.picasso.Picasso;
 
@@ -32,6 +33,7 @@ import butterknife.ButterKnife;
 
 /**
  * 商品详情界面
+ *
  * @author Lei Dong
  */
 public class ProductDetailActivity extends Activity implements View.OnClickListener {
@@ -108,10 +110,12 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
         mProductDetailName.setText(mProductName);
         mProductDetailPrice.setText(mProductPrice + "元");
         mProductDetailDesc.setText(mProductDesc);
+        FontUtils.setFontFromAssets(mProductDetailDesc, "fonts/doudouti.ttf");
     }
 
     /**
      * 按键点击时间监听
+     *
      * @param view 点击的View
      */
     @Override

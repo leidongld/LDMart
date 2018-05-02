@@ -18,16 +18,19 @@ import com.example.leidong.ldmart.ui.UserActivity;
 
 /**
  * 卖家列表适配器
+ *
  * @author Lei Dong
  */
 public class SellerListAdapter extends RecyclerView.Adapter<SellerListAdapter.ViewHolder>{
     //Context
     private Context mContext;
+
     //卖家数组
     private Seller[] mSellers;
 
     /**
      * 构造器
+     *
      * @param context Context
      * @param mSellers 卖家数组
      */

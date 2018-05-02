@@ -4,10 +4,10 @@ import java.util.List;
 
 /**
  * Product Json
+ *
  * @author Lei Dong
  */
 public class Products {
-
     private List<ProductsBean> products;
 
     public List<ProductsBean> getProducts() {
@@ -21,14 +21,16 @@ public class Products {
     public static class ProductsBean {
         /**
          * productId : 0
-         * productName : 西瓜1
-         * productImage : http://58pic.ooopic.com/58pic/12/92/84/36c58PICefh.jpg
-         * productPrice : 20
+         * categoryId : 1
+         * productName : 精品脐橙
+         * productImage : https://img12.360buyimg.com/babel/s360x360_jfs/t3295/14/5775084582/492685/47d076e7/587e0252Nf62a419b.jpg!q80.webp
+         * productPrice : 1
          * productNumber : 100
-         * productDesc : 西瓜1的介绍
+         * productDesc : 被春天吻过的鲜橙，生长期更长，耐心酝酿更优质的甜橙。
          */
 
         private int productId;
+        private int categoryId;
         private String productName;
         private String productImage;
         private int productPrice;
@@ -41,6 +43,14 @@ public class Products {
 
         public void setProductId(int productId) {
             this.productId = productId;
+        }
+
+        public int getCategoryId() {
+            return categoryId;
+        }
+
+        public void setCategoryId(int categoryId) {
+            this.categoryId = categoryId;
         }
 
         public String getProductName() {

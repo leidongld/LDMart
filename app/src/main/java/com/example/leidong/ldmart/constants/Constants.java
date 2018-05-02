@@ -2,6 +2,7 @@ package com.example.leidong.ldmart.constants;
 
 /**
  * 常量类
+ *
  * @author Lei Dong
  */
 public class Constants {
@@ -82,4 +83,8 @@ public class Constants {
     public static final String ORDER_DB_ID = "ORDER_DB_ID";
 
     public static final String ORDER_DATA = "ORDER_DATA";
+
+    public static final Long CATEGORY_FRUITS = 1L;
+    public static final Long CATEGORY_VEGETABLES = 2L;
+    public static final Long CATEGORY_GRAINS = 3L;
 }
