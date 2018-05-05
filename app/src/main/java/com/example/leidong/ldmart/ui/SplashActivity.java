@@ -30,13 +30,17 @@ import butterknife.ButterKnife;
 public class SplashActivity extends Activity {
     private static final String TAG = "SplashActivity";
 
+    //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
+    //是否是第一次登陆的标志
     private boolean isFirstLogin;
 
+    //App名称
     @BindView(R.id.tv_app_name)
     TextView mAppName;
 
+    //Layout
     @BindView(R.id.activity_splash)
     LinearLayout mSplashActivityLayout;
 
@@ -60,8 +64,6 @@ public class SplashActivity extends Activity {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.2f, 1.0f);
         alphaAnimation.setDuration(Constants.SPLASH_ACTIVITY_ANIMATION_DURATION);
         mSplashActivityLayout.setAnimation(alphaAnimation);
-
-
 
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {

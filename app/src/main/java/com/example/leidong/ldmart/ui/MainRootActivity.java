@@ -3,7 +3,6 @@ package com.example.leidong.ldmart.ui;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.example.leidong.ldmart.R;
@@ -38,8 +37,6 @@ public class MainRootActivity extends Activity implements OnTabSelectListener {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_root_main);
 
         ButterKnife.bind(this);

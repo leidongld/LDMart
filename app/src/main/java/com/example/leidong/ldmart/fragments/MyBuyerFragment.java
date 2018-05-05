@@ -139,6 +139,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
 
     /**
      * 按钮点击事件
+     *
      * @param view 点击的View
      */
     @Override
@@ -180,7 +181,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
             buyer.setAddress(buyerAddress);
             mBuyerDao.update(buyer);
 
-            Toast.makeText(MyApplication.getsContext(), R.string.user_info_update_finish, Toast.LENGTH_LONG).cancel();
+            Toast.makeText(MyApplication.getsContext(), R.string.user_info_update_finish, Toast.LENGTH_LONG).show();
 
             mPassword1Layout.setVisibility(View.GONE);
             mPassword2Layout.setVisibility(View.GONE);
@@ -217,7 +218,7 @@ public class MyBuyerFragment extends Fragment implements View.OnClickListener {
      */
     @SuppressLint("ShowToast")
     private void clickChangeBtn() {
-        Toast.makeText(MyApplication.getsContext(), "请更改您的信息", Toast.LENGTH_LONG).cancel();
+        Toast.makeText(MyApplication.getsContext(), "请更改您的信息", Toast.LENGTH_LONG).show();
 
         //可输入
         mBuyerNameEt.setFocusableInTouchMode(true);

@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
     <!--中间内容-->
     <ScrollView
         android:id="@+id/product_detail_container"
@@ -26,14 +27,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="3">
                 <TextView
                     android:id="@+id/product_detail_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="商品名称"
+                    android:textColor="@color/green"
+                    android:textStyle="bold"
                     android:layout_weight="1"
-                    android:textSize="32sp"
+                    android:textSize="26sp"
                     android:layout_marginLeft="24dp"
                     android:gravity="center_vertical"/>
                 <TextView
@@ -41,12 +44,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="0元"
-                    android:textSize="32sp"
+                    android:textSize="26sp"
                     android:textColor="@color/red"
                     android:textStyle="bold"
                     android:gravity="center_vertical|right"
                     android:paddingRight="24dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="2"/>
             </LinearLayout>
             <!--商品介绍-->
             <View
@@ -54,12 +57,21 @@
                 android:layout_height="2dp"
                 android:background="@color/gray"/>
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="商品介绍"
+                android:textSize="26sp"/>
+            <TextView
                 android:id="@+id/product_detail_desc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="12dp"
+                android:paddingRight="12dp"
                 android:textSize="22sp"
-                android:layout_marginTop="12dp"/>
+                android:layout_marginTop="8dp"/>
         </LinearLayout>
     </ScrollView>
 

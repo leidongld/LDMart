@@ -60,6 +60,7 @@ public class ProductsBuyerFragment extends Fragment implements View.OnClickListe
     //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
+    //商品目录码
     private Long mCategoryMode = Constants.CATEGORY_FRUITS;
 
     @Override

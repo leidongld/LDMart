@@ -29,5 +29,7 @@
     <string name="input_password">请输入密码</string>
     <string name="input_search_content">请输入查找内容</string>
     <string name="add_buyer_and_products_finish">卖家添加完毕！商品加载完毕！</string>
-    <string name="add_trolley_finish">商品已加入购物车</string>
+    <string name="add_trolley_finish">商品已加入购物车，此功能暂未实现！</string>
+    <string name="warning_buy_success">商品购买成功！</string>
+    <string name="warning_product_update">商品更新完毕！</string>
 </resources>

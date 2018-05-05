@@ -64,6 +64,7 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
     private int mProductStock;
     private String mProductDesc;
 
+    //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
     @Override
@@ -109,6 +110,11 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
         mProductManagePrice.setText(mProductPrice + "");
         mProductManageStock.setText(mProductStock + "");
         mProductManageDesc.setText(mProductDesc);
+
+        //设置字体
+        FontUtils.setFontFromAssets(mProductManageName, "fonts/doudouti.ttf");
+        FontUtils.setFontFromAssets(mProductManagePrice, "fonts/doudouti.ttf");
+        FontUtils.setFontFromAssets(mProductManageStock, "fonts/doudouti.ttf");
         FontUtils.setFontFromAssets(mProductManageDesc, "fonts/doudouti.ttf");
 
         mMySharedPreferences = MySharedPreferences.getMySharedPreferences(this);
@@ -153,6 +159,7 @@ public class ProductManageActivity extends Activity implements View.OnClickListe
                 Long sellerId = mMySharedPreferences.load(Constants.SELLER_ID, 0L);
                 if(SecureUtils.isSellererPasswordRight(passwordTemp, sellerId)){
                     updateProductInDb();
+                    Toast.makeText(ProductManageActivity.this, R.string.warning_product_update, Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(ProductManageActivity.this, R.string.warning_password_error, Toast.LENGTH_LONG).show();

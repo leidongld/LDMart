@@ -110,6 +110,10 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
         mProductDetailName.setText(mProductName);
         mProductDetailPrice.setText(mProductPrice + "元");
         mProductDetailDesc.setText(mProductDesc);
+
+        //设置字体
+        FontUtils.setFontFromAssets(mProductDetailName, "fonts/doudouti.ttf");
+        FontUtils.setFontFromAssets(mProductDetailPrice, "fonts/doudouti.ttf");
         FontUtils.setFontFromAssets(mProductDetailDesc, "fonts/doudouti.ttf");
     }
 
@@ -162,6 +166,7 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
                     Long buyerId = mMySharedPreferences.load(Constants.BUYER_ID, 0L);
                     if(SecureUtils.isBuyerPasswordRight(passwordTemp, buyerId)) {
                         addOrderToDb();
+                        Toast.makeText(ProductDetailActivity.this, R.string.warning_buy_success, Toast.LENGTH_LONG).show();
                     }
                     else{
                         Toast.makeText(ProductDetailActivity.this, R.string.warning_password_error, Toast.LENGTH_LONG).show();
@@ -173,7 +178,7 @@ public class ProductDetailActivity extends Activity implements View.OnClickListe
         }
         //存量不足
         else{
-            Toast.makeText(ProductDetailActivity.this, R.string.stock_not_enough, Toast.LENGTH_LONG).cancel();
+            Toast.makeText(ProductDetailActivity.this, R.string.stock_not_enough, Toast.LENGTH_LONG).show();
         }
     }
 

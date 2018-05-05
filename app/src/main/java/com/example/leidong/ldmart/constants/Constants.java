@@ -23,13 +23,13 @@ public class Constants {
 
     public static final String PRODUCT_MANAGE = "PRODUCT_MANAGE";
 
-    public static final String PRODUCT_MANAGE_NAME = "PRODUCT_MANAGE_NAME";
-
-    public static final String PRODUCT_MANAGE_IMAGE_URL = "PRODUCT_MANAGE_IMAGE_URL";
-
-    public static final String PRODUCT_MANAGE_PRICE = "PRODUCT_MANAGE_PRICE";
-
-    public static final String PRODUCT_MANAGE_DESC = "PRODUCT_MANAGE_DESC";
+//    public static final String PRODUCT_MANAGE_NAME = "PRODUCT_MANAGE_NAME";
+//
+//    public static final String PRODUCT_MANAGE_IMAGE_URL = "PRODUCT_MANAGE_IMAGE_URL";
+//
+//    public static final String PRODUCT_MANAGE_PRICE = "PRODUCT_MANAGE_PRICE";
+//
+//    public static final String PRODUCT_MANAGE_DESC = "PRODUCT_MANAGE_DESC";
 
     //SP
     public static final String IS_FIRST_LOGIN = "IS_FIRST_LOGIN";
@@ -43,25 +43,25 @@ public class Constants {
 
     public static final String BUYER_ID = "BUYER_ID";
 
-    public static final String BUYER_USERNAME = "BUYER_USERNAME";
-
-    public static final String BUYER_PASSWORD = "BUYER_PASSWORD";
-
-    public static final String BUYER_ADDRESS = "BUYER_ADDRESS";
-
-    public static final String BUYER_PHONE = "BUYER_PHONE";
+//    public static final String BUYER_USERNAME = "BUYER_USERNAME";
+//
+//    public static final String BUYER_PASSWORD = "BUYER_PASSWORD";
+//
+//    public static final String BUYER_ADDRESS = "BUYER_ADDRESS";
+//
+//    public static final String BUYER_PHONE = "BUYER_PHONE";
 
     public static final String BUYER_DATA = "BUYER_DATA";
 
     public static final String SELLER_ID = "SELLER_ID";
 
-    public static final String SELLER_USERNAME = "SELLER_USERNAME";
-
-    public static final String SELLER_PASSWORD = "SELLER_PASSWORD";
-
-    public static final String SELLER_ADDRESS = "SELLER_ADDRESS";
-
-    public static final String SELLER_PHONE = "SELLER_PHONE";
+//    public static final String SELLER_USERNAME = "SELLER_USERNAME";
+//
+//    public static final String SELLER_PASSWORD = "SELLER_PASSWORD";
+//
+//    public static final String SELLER_ADDRESS = "SELLER_ADDRESS";
+//
+//    public static final String SELLER_PHONE = "SELLER_PHONE";
 
     public static final String SELLER_DATA = "SELLER_DATA";
 

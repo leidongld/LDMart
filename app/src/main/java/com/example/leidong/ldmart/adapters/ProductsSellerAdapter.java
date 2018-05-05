@@ -18,6 +18,9 @@ import com.example.leidong.ldmart.constants.Constants;
 import com.example.leidong.ldmart.ui.ProductManageActivity;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * 卖家产品列表适配器
  *
@@ -79,18 +82,21 @@ public class ProductsSellerAdapter extends RecyclerView.Adapter<ProductsSellerAd
      * ViewHolder
      */
     class ViewHolder extends RecyclerView.ViewHolder{
+        @BindView(R.id.product_buyer_item_layout)
         LinearLayout productItemLayout;
+
+        @BindView(R.id.product_buyer_item_image)
         ImageView productImage;
+
+        @BindView(R.id.product_buyer_item_name)
         TextView productName;
+
+        @BindView(R.id.product_buyer_item_price)
         TextView productPrice;
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            productItemLayout = itemView.findViewById(R.id.product_buyer_item_layout);
-            productImage = itemView.findViewById(R.id.product_buyer_item_image);
-            productName = itemView.findViewById(R.id.product_buyer_item_name);
-            productPrice = itemView.findViewById(R.id.product_buyer_item_price);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

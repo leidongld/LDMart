@@ -23,6 +23,9 @@ import com.example.leidong.ldmart.greendao.ProductDao;
 import com.example.leidong.ldmart.ui.OrderDetailActivity;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * 卖家订单适配器
  *
@@ -116,28 +119,36 @@ public class OrdersSellerAdapter extends RecyclerView.Adapter<OrdersSellerAdapte
      * ViewHolder
      */
     class ViewHolder extends RecyclerView.ViewHolder{
+        @BindView(R.id.order_layout)
         LinearLayout orderLayout;
+
+        @BindView(R.id.order_id)
         TextView orderId;
+
+        @BindView(R.id.order_time)
         TextView orderTime;
+
+        @BindView(R.id.product_image)
         ImageView productImage;
+
+        @BindView(R.id.product_name)
         TextView productName;
+
+        @BindView(R.id.product_price)
         TextView productPrice;
+
+        @BindView(R.id.product_number)
         TextView productNumber;
+
+        @BindView(R.id.products_total_price)
         TextView productsTotalPrice;
+
+        @BindView(R.id.btn_deliver)
         Button btnDeliver;
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            orderLayout = itemView.findViewById(R.id.order_layout);
-            orderId = itemView.findViewById(R.id.order_id);
-            orderTime = itemView.findViewById(R.id.order_time);
-            productImage = itemView.findViewById(R.id.product_image);
-            productName = itemView.findViewById(R.id.product_name);
-            productPrice = itemView.findViewById(R.id.product_price);
-            productNumber = itemView.findViewById(R.id.product_number);
-            productsTotalPrice = itemView.findViewById(R.id.products_total_price);
-            btnDeliver = itemView.findViewById(R.id.btn_deliver);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

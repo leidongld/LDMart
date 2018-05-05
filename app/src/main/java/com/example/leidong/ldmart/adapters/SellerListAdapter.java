@@ -16,6 +16,9 @@ import com.example.leidong.ldmart.beans.Seller;
 import com.example.leidong.ldmart.constants.Constants;
 import com.example.leidong.ldmart.ui.UserActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * 卖家列表适配器
  *
@@ -78,16 +81,18 @@ public class SellerListAdapter extends RecyclerView.Adapter<SellerListAdapter.Vi
      * ViewHolder
      */
     class ViewHolder extends RecyclerView.ViewHolder{
+        @BindView(R.id.seller_item_layout)
         LinearLayout sellerItemLayout;
+
+        @BindView(R.id.seller_id)
         TextView sellerId;
+
+        @BindView(R.id.seller_name)
         TextView sellerName;
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            sellerItemLayout = itemView.findViewById(R.id.seller_item_layout);
-            sellerId = itemView.findViewById(R.id.seller_id);
-            sellerName = itemView.findViewById(R.id.seller_name);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

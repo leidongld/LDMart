@@ -18,5 +18,6 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottombar_tabs_buyer"
-        app:bb_activeTabColor="@color/white" />
+        app:bb_activeTabColor="@color/white"
+        app:bb_behavior="shifting"/>
 </RelativeLayout>

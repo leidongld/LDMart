@@ -156,7 +156,8 @@
             android:text="保存信息"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/button_style"/>
     </LinearLayout>
 </ScrollView>

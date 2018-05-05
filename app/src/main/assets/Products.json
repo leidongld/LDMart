@@ -257,7 +257,7 @@
     {
       "productId":27,
       "categoryId":3,
-      "productName":"红豆",
+      "productName":"南国红豆",
       "productImage":"https://img13.360buyimg.com/n1/s150x150_jfs/t17350/318/1503561521/100752/920b5acc/5aced2c4N7d34c88d.jpg",
       "productPrice":8,
       "productNumber":100,
@@ -266,20 +266,20 @@
     {
       "productId":28,
       "categoryId":3,
-      "productName":"绿豆",
+      "productName":"精品绿豆",
       "productImage":"https://img10.360buyimg.com/n1/s150x150_jfs/t19141/145/1496173157/85183/925ca304/5aced796Nb7d3a3b5.jpg",
       "productPrice":9,
       "productNumber":100,
-      "productDesc":"绿豆的介绍"
+      "productDesc":"清热解暑，夏日必备。"
     },
     {
       "productId":29,
       "categoryId":3,
-      "productName":"糯米",
+      "productName":"优质糯米",
       "productImage":"https://img12.360buyimg.com/n1/s150x150_jfs/t17437/164/1738085477/91869/7a7bc90a/5ad57fa7Nd82f0222.jpg",
       "productPrice":10,
       "productNumber":100,
-      "productDesc":"糯米的介绍"
+      "productDesc":"清香软糯的糯米来啦！"
     }
   ]
 }

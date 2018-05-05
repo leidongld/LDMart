@@ -54,13 +54,13 @@ dependencies {
     /*RecyclerView*/
     implementation 'com.android.support:recyclerview-v7:26.1.0'
 
-    //Gson
+    /*Gson*/
     implementation 'com.google.code.gson:gson:2.8.2'
 
-    //GreenDao
+    /*GreenDao*/
     implementation 'org.greenrobot:greendao:3.0.1'
     implementation 'org.greenrobot:greendao-generator:3.0.0'
 
-    //Picasso
+    /*Picasso*/
     implementation 'com.squareup.picasso:picasso:2.71828'
 }

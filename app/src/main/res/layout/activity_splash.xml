@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="雷栋的农场"
-        android:textSize="72sp"
+        android:textSize="56sp"
         android:textStyle="italic"
         android:textColor="@color/white"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="300dp"
         android:gravity="center"/>
 </LinearLayout>

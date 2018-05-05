@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.leidong.ldmart.MyApplication;
 import com.example.leidong.ldmart.R;
 import com.example.leidong.ldmart.beans.Buyer;
@@ -54,6 +53,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
     @BindView(R.id.btn_delete_user)
     Button mDeleteUserBtn;
 
+    //MySharedPreferences
     private MySharedPreferences mMySharedPreferences;
 
     //用户Id
@@ -95,6 +95,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         //买家模式
         if(mUserMode == Constants.BUYER_MODE){
+            //获取买家信息
             BuyerDao buyerDao = MyApplication.getInstance().getDaoSession().getBuyerDao();
             Buyer buyer = buyerDao.queryBuilder().where(BuyerDao.Properties.Id.eq(mUserId)).unique();
             mUsername = buyer.getUsername();
@@ -104,6 +105,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
         }
         //卖家模式
         else if(mUserMode == Constants.SELLER_MODE){
+            //获取卖家信息
             SellerDao sellerDao = MyApplication.getInstance().getDaoSession().getSellerDao();
             Seller seller = sellerDao.queryBuilder().where(SellerDao.Properties.Id.eq(mUserId)).unique();
             mUsername = seller.getUsername();
@@ -156,10 +158,12 @@ public class UserActivity extends Activity implements View.OnClickListener {
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    //删除对应订单
                     OrderDao orderDao = MyApplication.getInstance().getDaoSession().getOrderDao();
                     List<Order> orderList = orderDao.queryBuilder().where(OrderDao.Properties.BuyerId.eq(mUserId)).list();
                     orderDao.deleteInTx(orderList);
 
+                    //删除买家
                     BuyerDao buyerDao = MyApplication.getInstance().getDaoSession().getBuyerDao();
                     Buyer buyer = buyerDao.queryBuilder().where(BuyerDao.Properties.Id.eq(mUserId)).unique();
                     buyerDao.delete(buyer);
@@ -178,18 +182,22 @@ public class UserActivity extends Activity implements View.OnClickListener {
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    //删除对应订单
                     OrderDao orderDao = MyApplication.getInstance().getDaoSession().getOrderDao();
                     List<Order> orderList = orderDao.loadAll();
                     orderDao.deleteInTx(orderList);
 
+                    //删除卖家
                     SellerDao sellerDao = MyApplication.getInstance().getDaoSession().getSellerDao();
                     Seller seller = sellerDao.queryBuilder().where(SellerDao.Properties.Id.eq(mUserId)).unique();
                     sellerDao.delete(seller);
 
+                    //下架全部商品
                     ProductDao productDao = MyApplication.getInstance().getDaoSession().getProductDao();
                     List<Product> productList = productDao.loadAll();
                     productDao.deleteInTx(productList);
 
+                    //更改标志信息
                     mMySharedPreferences = MySharedPreferences.getMySharedPreferences(MyApplication.getsContext());
                     mMySharedPreferences.save(Constants.IS_SELLER_EXIST, false);
 
